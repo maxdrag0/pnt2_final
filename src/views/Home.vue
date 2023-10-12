@@ -63,7 +63,7 @@
     <div class="container-comienzo">
       <h2>Inicia sesión o regístrate para comenzar</h2>
 
-      <div class="container-comienzo-registro">
+      <div class="container-comienzo-registro" v-if="formulario">
         <form>
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
@@ -89,7 +89,7 @@
         </form>
       </div>
 
-      <div class="container-comienzo-inicio">
+      <div class="container-comienzo-inicio" v-else>
         <form>
           <div class="mb-3">
             <label for="mail" class="form-label">Mail</label>
@@ -117,6 +117,9 @@
   <solicitudes></solicitudes>
   <H1>INICIO DE SESION</H1>
   <login-form></login-form>
+  <h1>PERFIL usuario</h1>
+  <userProfile></userProfile>
+
 </template>
 
 <script>
@@ -124,30 +127,32 @@ import LoginForm from '../components/LoginForm.vue';
 import RegisterForm from '../components/RegisterForm.vue';
 import Solicitudes from '../components/Solicitudes.vue';
 import User from '../components/User.vue';
+import UserProfile from '../components/UserProfile.vue';
 import { onMounted, ref } from "vue";
 
-let formulario = (false)
 
-const cambiarFormulario = () => {
-  formulario.value = !formulario.value
-}
 
 export default {
   data() {
     return {
       name: "",
+      formulario: true,
     };
   },
   methods: {
     handleSubmit() {
       // Lógica de envío de formulario
     },
+    cambiarFormulario() {
+      this.formulario = !this.formulario; // Cambias el valor de formulario utilizando this
+    },
   },
   components: {
     LoginForm,
     RegisterForm,
     Solicitudes,
-    User
+    User,
+    UserProfile
   },
 };
 </script>
