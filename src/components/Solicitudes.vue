@@ -99,7 +99,7 @@
         </table>
     </div>
 </template>
-  
+
 <script setup>
 import { onMounted, ref } from "vue";
 const solicitudes = ref([]);
@@ -127,7 +127,7 @@ onMounted(() => {
 const verSolicitud = () => { };
 const aceptarSolicitud = () => { };
 </script>
-  
+
 <style>
 #perfil {
     width: 40px;
@@ -149,4 +149,3 @@ const aceptarSolicitud = () => { };
     margin-right: 4px;
 }
 </style>
-  

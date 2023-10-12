@@ -16,19 +16,6 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Inicia sesion
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/LoginForm">ARciano</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/LoginForm">VoluntAR</router-link>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Registrate
             </a>
             <ul class="dropdown-menu">
@@ -37,6 +24,19 @@
               </li>
               <li>
                 <router-link class="dropdown-item" to="/RegisterForm">VoluntAR</router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <router-link class="dropdown-item" to="/LoginForm">ARciano</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/LoginForm">VoluntAR</router-link>
               </li>
             </ul>
           </li>
@@ -104,7 +104,7 @@
           <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
             Registrate!
           </button>
-          <router-link to="/User"><button type="submit" class="btn btn-primary">
+          <router-link to="/UserProfile"><button type="submit" class="btn btn-primary">
               Inicia sesion!
             </button></router-link>
         </form>
@@ -113,13 +113,16 @@
     </div>
   </div>
 
-  <H1>SOLICITUDES</H1>
-  <solicitudes></solicitudes>
-  <H1>INICIO DE SESION</H1>
+  <H3>INICIO DE SESION</H3>
   <login-form></login-form>
-  <h1>PERFIL usuario</h1>
+  <H3>REGISTRO DE USUARIO</H3>
+  <registerForm></registerForm>
+  <H3>PERFIL USUARIO</H3>
   <userProfile></userProfile>
-
+  <H3>SOLICITUDES</H3>
+  <solicitudes></solicitudes>
+  <H3>CREAR SOLICITUDES</H3>
+  <CrearSolicitud></CrearSolicitud>
 </template>
 
 <script>
@@ -128,6 +131,7 @@ import RegisterForm from '../components/RegisterForm.vue';
 import Solicitudes from '../components/Solicitudes.vue';
 import User from '../components/User.vue';
 import UserProfile from '../components/UserProfile.vue';
+import CrearSolicitud from '../components/crearSolicitud.vue'
 import { onMounted, ref } from "vue";
 
 
@@ -152,12 +156,16 @@ export default {
     RegisterForm,
     Solicitudes,
     User,
-    UserProfile
+    UserProfile,
+    CrearSolicitud,
   },
 };
 </script>
 
 <style>
+H3{
+  padding-top: 100px;
+}
 #baston {
   width: 40px;
   /* Establece el ancho de la imagen */

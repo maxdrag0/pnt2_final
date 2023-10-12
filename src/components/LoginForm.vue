@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <router-link to="/Home">
@@ -16,19 +16,6 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Inicia sesion
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/LoginForm">ARciano</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/LoginForm">VoluntAR</router-link>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Registrate
             </a>
             <ul class="dropdown-menu">
@@ -37,6 +24,19 @@
               </li>
               <li>
                 <router-link class="dropdown-item" to="/RegisterForm">VoluntAR</router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <router-link class="dropdown-item" to="/LoginForm">ARciano</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/LoginForm">VoluntAR</router-link>
               </li>
             </ul>
           </li>
