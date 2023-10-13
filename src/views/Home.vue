@@ -1,140 +1,216 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <router-link to="/Home">
-          <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
-        </router-link>
-      </a>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <router-link to="/Home">
+            <img
+              id="baston"
+              src="../assets/images/baston.png"
+              alt="Botón de Inicio"
+            />
+          </router-link>
+        </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Registrate
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/RegisterForm">ARciano</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/RegisterForm">VoluntAR</router-link>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              About Us
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/LoginForm">ARciano</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/LoginForm">VoluntAR</router-link>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Registrate
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <router-link class="dropdown-item" to="/RegisterForm"
+                    >ARciano</router-link
+                  >
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/RegisterForm"
+                    >VoluntAR</router-link
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                About Us
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <router-link class="dropdown-item" to="/LoginForm"
+                    >ARciano</router-link
+                  >
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/LoginForm"
+                    >VoluntAR</router-link
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <div class="presentacion">
-    <div class="titulo">
+    <div class="presentacion">
       <h1>Bienvenido a VoluntAR</h1>
+      <p>
+        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+        tareas diarias.
+      </p>
     </div>
-    <p>
-      Conectamos a voluntarios con ancianos que necesitan asistencia en sus tareas
-      diarias.
-    </p>
-  </div>
+  </header>
 
-  <div class="container">
-    <div class="container-img">
-      <img src="/src/assets/images/abuelos-voluntarios.jpg" alt="imagen-abuelos" />
-    </div>
+  <main>
+    <section class="container">
+      <section class="container-img">
+        <img
+          src="/src/assets/images/abuelos-voluntarios.jpg"
+          alt="imagen-abuelos"
+        />
+      </section>
 
-    <div class="container-comienzo">
-      <h2>Inicia sesión o regístrate para comenzar</h2>
+      <section class="container-comienzo">
+        <h2>Inicia sesión o regístrate para comenzar</h2>
 
-      <div class="container-comienzo-registro" v-if="formulario">
-        <form>
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-          </div>
+        <section class="container-comienzo-registro" v-if="formulario">
+          <form>
+            <legend>
+              Registrate
+            </legend>
 
-          <div class="mb-3">
-            <label for="Apellido" class="form-label">Apellido</label>
-            <input type="Apellido" class="form-control" id="Apellido" />
-          </div>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                aria-describedby="Nombre"
+                required
+              />
+            </div>
 
-          <div class="mb-3">
-            <label for="mail" class="form-label">Mail</label>
-            <input type="mail" class="form-control" id="mail" />
-          </div>
+            <div class="mb-3">
+              <label for="Apellido" class="form-label">Apellido</label>
+              <input
+                type="text "
+                class="form-control"
+                id="Apellido"
+                required
+              />
+            </div>
 
-          <router-link to="/RegisterForm"><button type="submit" class="btn btn-primary">
-              Registrate!
-            </button></router-link>
-          <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
-            Inicia sesion!
-          </button>
-        </form>
-      </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Mail</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                required
+              />
+            </div>
 
-      <div class="container-comienzo-inicio" v-else>
-        <form>
-          <div class="mb-3">
-            <label for="mail" class="form-label">Mail</label>
-            <input type="mail" class="form-control" id="mail" />
-          </div>
-
-          <div class="mb-3">
-            <label for="mail" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="mail" />
-          </div>
-
-          <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
-            Registrate!
-          </button>
-          <router-link to="/UserProfile"><button type="submit" class="btn btn-primary">
+            <router-link to="/RegisterForm"
+              ><button type="submit" class="btn btn-primary">
+                Registrate!
+              </button></router-link
+            >
+            <button
+              @click="cambiarFormulario()"
+              type="submit"
+              class="btn btn-primary"
+            >
               Inicia sesion!
-            </button></router-link>
-        </form>
-      </div>
+            </button>
+          </form>
+        </section>
 
-    </div>
-  </div>
+        <section class="container-comienzo-inicio" v-else>
+          <form>
+            <legend>Inicia sesion</legend>
+            <div class="mb-3">
+              <label for="email" class="form-label">Mail</label>
+              <input type="email" class="form-control" id="email" required/>
+            </div>
 
-  <H3>INICIO DE SESION</H3>
+            <div class="mb-3">
+              <label for="contraseña" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="contraseña" required/>
+            </div>
+
+            <button
+              @click="cambiarFormulario()"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Registrate!
+            </button>
+            <router-link to="/UserProfile"
+              ><button type="submit" class="btn btn-primary">
+                Inicia sesion!
+              </button></router-link
+            >
+          </form>
+        </section>
+      </section>
+    </section>
+
+    <a
+      href="//wa.me/5491157962522/?text=Hola%20Maxi%20que%20buen%20trabajo%20hicieron!"
+      target="_blank"
+    >
+      Wsp
+    </a>
+  </main>
+
+  <h3>INICIO DE SESION</h3>
   <login-form></login-form>
-  <H3>REGISTRO DE USUARIO</H3>
+  <h3>REGISTRO DE USUARIO</h3>
   <registerForm></registerForm>
-  <H3>PERFIL USUARIO</H3>
+  <h3>PERFIL USUARIO</h3>
   <userProfile></userProfile>
-  <H3>SOLICITUDES</H3>
+  <h3>SOLICITUDES</h3>
   <solicitudes></solicitudes>
-  <H3>CREAR SOLICITUDES</H3>
+  <h3>CREAR SOLICITUDES</h3>
   <CrearSolicitud></CrearSolicitud>
+  <br />
+  <br />
+  <br />
 </template>
 
 <script>
-import LoginForm from '../components/LoginForm.vue';
-import RegisterForm from '../components/RegisterForm.vue';
-import Solicitudes from '../components/Solicitudes.vue';
-import User from '../components/User.vue';
-import UserProfile from '../components/UserProfile.vue';
-import CrearSolicitud from '../components/CrearSolicitud.vue'
+import LoginForm from "../components/LoginForm.vue";
+import RegisterForm from "../components/RegisterForm.vue";
+import Solicitudes from "../components/Solicitudes.vue";
+import User from "../components/User.vue";
+import UserProfile from "../components/UserProfile.vue";
+import CrearSolicitud from "../components/crearSolicitud.vue";
 import { onMounted, ref } from "vue";
-
-
 
 export default {
   data() {
@@ -201,7 +277,6 @@ H3 {
   align-items: center;
   justify-content: center;
 }
-
 
 img {
   width: 600px;
