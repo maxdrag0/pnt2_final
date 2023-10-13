@@ -131,7 +131,7 @@ import RegisterForm from '../components/RegisterForm.vue';
 import Solicitudes from '../components/Solicitudes.vue';
 import User from '../components/User.vue';
 import UserProfile from '../components/UserProfile.vue';
-import CrearSolicitud from '../components/crearSolicitud.vue'
+import CrearSolicitud from '../components/CrearSolicitud.vue'
 import { onMounted, ref } from "vue";
 
 
@@ -163,9 +163,10 @@ export default {
 </script>
 
 <style>
-H3{
+H3 {
   padding-top: 100px;
 }
+
 #baston {
   width: 40px;
   /* Establece el ancho de la imagen */
