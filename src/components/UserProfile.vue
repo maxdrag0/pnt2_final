@@ -1,20 +1,74 @@
 <template>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <router-link to="/">
+                    <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
+                </router-link>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li>
+                        <a>
+                            <router-link to="/User">
+                                <img id="perfil" src="../assets/images/perfil.png" alt="Botón de PERFIL" />
+                            </router-link>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Mi Perfil
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <router-link class="dropdown-item" to="/RegisterForm">Mis Datos</router-link>
+                            </li>
+                            <li>
+                                <router-link class="dropdown-item" to="/RegisterForm">Certificaciones</router-link>
+                            </li>
+                            <li>
+                                <router-link class="dropdown-item" to="/RegisterForm">Mis Solicitudes</router-link>
+                            </li>
+                            <li>
+                                <router-link class="dropdown-item" to="/RegisterForm">Solicitudes Completadas</router-link>
+                            </li>
+                            <li>
+                                <router-link class="dropdown-item" to="/RegisterForm">Mis Retos</router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
   <div>
     <!-- NAVEGACION -->
     <!-- Aquí iría tu código de navegación si lo necesitas -->
 
     <!-- PERFIL -->
     <div v-if="userProfile">
-
       <body>
         <div class="card" style="width: 18rem">
-          <img class="card-img-top" src="../assets/images/perfil.png" alt="Card image cap" />
+          <img
+            class="card-img-top"
+            src="../assets/images/perfil.png"
+            alt="Card image cap"
+          />
           <div class="card-body">
             <h5 class="card-title">{{ userProfile.userName }}</h5>
             <p class="card-text">{{ userProfile.userDescription }}</p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Tipo de usuario: {{ userProfile.userType }}</li>
+            <li class="list-group-item">
+              Tipo de usuario: {{ userProfile.userType }}
+            </li>
             <li class="list-group-item">Ciudad: {{ userProfile.userCity }}</li>
             <li class="list-group-item">Valoracion:</li>
           </ul>
@@ -25,36 +79,31 @@
         </div>
       </body>
     </div>
-    <div v-else>
-      Cargando perfil...
-    </div>
+    <div v-else>Cargando perfil...</div>
   </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import axios from "axios";
+import { ref, onMounted, onErrorCaptured } from "vue";
 
-export default {
-  data() {
-    return {
-      userProfile: null,
-    };
-  },
-  methods: {
-    async fetchUserProfile() {
-      const userId = this.$route.params.userId;
-      try {
-        const response = await axios.get(`https://6525d5d667cfb1e59ce7b745.mockapi.io/:endpoint${userId}`);
-        this.userProfile = response.data;
-      } catch (error) {
-        console.error('Hubo un error al obtener el perfil del usuario:', error);
-      }
-    },
-  },
-  created() {
-    this.fetchUserProfile();
-  },
+const userProfile = ref(null);
+
+const fetchUserProfile = async () => {
+  const userId = $route.params.userId;
+  try {
+    const response = await axios.get(`https://tu-url-o-ruta/api/${userId}`);
+    userProfile.value = response.data;
+  } catch (error) {
+    console.error("Hubo un error al obtener el perfil del usuario:", error);
+  }
 };
+
+onMounted(fetchUserProfile);
+
+onErrorCaptured((error) => {
+  console.error("Error capturado:", error);
+});
 </script>
 
 <style scoped>

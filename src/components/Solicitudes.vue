@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <router-link to="/Home">
+                <router-link to="/">
                     <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
                 </router-link>
             </a>
