@@ -4,43 +4,24 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <router-link to="/">
-            <img
-              id="baston"
-              src="../assets/images/baston.png"
-              alt="Botón de Inicio"
-            />
+            <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
           </router-link>
         </a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Ingresa!
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/RegisterForm"
-                    >Registrate</router-link
-                  >
+                  <router-link class="dropdown-item" to="/RegisterForm">Registrate</router-link>
                 </li>
                 <li>
                   <a class="dropdown-item" @click="formularioFalse()"
@@ -50,63 +31,37 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 About Us
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/LoginForm"
-                    >Anciano</router-link
-                  >
+                  <router-link class="dropdown-item" to="/LoginForm">Anciano</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/LoginForm"
-                    >VoluntARio</router-link
-                  >
+                  <router-link class="dropdown-item" to="/LoginForm">VoluntARio</router-link>
                 </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Componentes!
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/UserProfile"
-                    >UserProfile</router-link
-                  >
+                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/User"
-                    >User</router-link
-                  >
+                  <router-link class="dropdown-item" to="/User">User</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/Solicitudes"
-                    >Solicitudes</router-link
-                  >
+                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearUsuario"
-                    >CrearUsuario</router-link
-                  >
+                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearSolicitud"
-                    >CrearSolicitud</router-link
-                  >
+                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
                 </li>
               </ul>
             </li>
@@ -127,10 +82,7 @@
   <main>
     <section class="container">
       <section class="container-img">
-        <img
-          src="/src/assets/images/abuelos-voluntarios.jpg"
-          alt="imagen-abuelos"
-        />
+        <img src="/src/assets/images/abuelos-voluntarios.jpg" alt="imagen-abuelos" />
       </section>
 
       <section class="container-comienzo">
@@ -144,45 +96,23 @@
 
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                aria-describedby="Nombre"
-                required
-              />
+              <input type="text" class="form-control" id="nombre" aria-describedby="Nombre" required />
             </div>
 
             <div class="mb-3">
               <label for="Apellido" class="form-label">Apellido</label>
-              <input
-                type="text "
-                class="form-control"
-                id="Apellido"
-                required
-              />
+              <input type="text " class="form-control" id="Apellido" required />
             </div>
 
             <div class="mb-3">
               <label for="email" class="form-label">Mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                required
-              />
+              <input type="email" class="form-control" id="email" required />
             </div>
 
-            <router-link to="/RegisterForm"
-              ><button type="submit" class="btn btn-primary">
+            <router-link to="/UserProfile"><button type="submit" class="btn btn-primary">
                 Registrate!
-              </button></router-link
-            >
-            <button
-              @click="cambiarFormulario()"
-              type="submit"
-              class="btn btn-primary"
-            >
+              </button></router-link>
+            <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
               Inicia sesion!
             </button>
           </form>
@@ -193,26 +123,20 @@
             <legend>Inicia sesion</legend>
             <div class="mb-3">
               <label for="email" class="form-label">Mail</label>
-              <input type="email" class="form-control" id="email" required/>
+              <input type="email" class="form-control" id="email" required />
             </div>
 
             <div class="mb-3">
               <label for="contraseña" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="contraseña" required/>
+              <input type="password" class="form-control" id="contraseña" required />
             </div>
 
-            <button
-              @click="cambiarFormulario()"
-              type="submit"
-              class="btn btn-primary"
-            >
+            <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
               Registrate!
             </button>
-            <router-link to="/UserProfile"
-              ><button type="submit" class="btn btn-primary">
+            <router-link to="/UserProfile"><button type="submit" class="btn btn-primary">
                 Inicia sesion!
-              </button></router-link
-            >
+              </button></router-link>
           </form>
         </section>
       </section>
@@ -252,7 +176,6 @@
       />
     </a>
   </footer>
-
 </template>
 
 
@@ -269,8 +192,8 @@ const formularioFalse = ()=>{
   formulario.value = false
 }
 const handleSubmit = () => {
-      // Lógica de envío de formulario
-    }
+  // Lógica de envío de formulario
+}
 
 </script>
 

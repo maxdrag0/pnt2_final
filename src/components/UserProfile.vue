@@ -143,7 +143,7 @@ const userProfile = ref(null);
 const fetchUserProfile = async () => {
   const userId = $route.params.userId;
   try {
-    const response = await axios.get(`https://tu-url-o-ruta/api/${userId}`);
+    const response = await axios.get(`https://6525d5d667cfb1e59ce7b745.mockapi.io/${userId}`);
     userProfile.value = response.data;
   } catch (error) {
     console.error("Hubo un error al obtener el perfil del usuario:", error);
