@@ -43,8 +43,8 @@
                   >
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/RegisterForm"
-                    >Inicia sesion</router-link
+                  <a class="dropdown-item" @click="formularioFalse()"
+                    >Inicia sesion</a
                   >
                 </li>
               </ul>
@@ -115,7 +115,7 @@
       </div>
     </nav>
 
-    <div class="presentacion">
+    <div class="titulo">
       <h1>Bienvenido a VoluntAR</h1>
       <p>
         Conectamos a voluntarios con ancianos que necesitan asistencia en sus
@@ -221,6 +221,22 @@
 
   <section>
     <!-- //Seccion sobre nosotros -->
+    <div class="titulo">
+      <h1>Sobre nosotros</h1>
+      <h2>VOLUNTARIOS</h2>
+    </div>
+    <p>
+        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+        tareas diarias.
+    </p>
+    <div class="titulo">
+      <h1>Sobre nosotros</h1>
+      <h2>MAYORES</h2>
+    </div>
+    <p>
+        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+        tareas diarias.
+    </p>
   </section>
 
   <footer>
@@ -229,7 +245,11 @@
       href="//wa.me/5491157962522/?text=Hola%20Maxi%20que%20buen%20trabajo%20hicieron!"
       target="_blank"
     >
-      Wsp
+      <img
+        id="whatsapp"
+        src="../assets/images/wsp.png"
+        alt="Botón de Whatsapp"
+      />
     </a>
   </footer>
 
@@ -245,6 +265,9 @@ const cambiarFormulario = () => {
   formulario.value = !formulario.value;
 };
 
+const formularioFalse = ()=>{
+  formulario.value = false
+}
 const handleSubmit = () => {
       // Lógica de envío de formulario
     }
@@ -256,22 +279,27 @@ H3 {
   padding-top: 100px;
 }
 
-#baston {
+footer{
+  margin-left: 10px;
+}
+
+#baston  {
   width: 40px;
   /* Establece el ancho de la imagen */
   height: 40px;
 }
 
-.presentacion {
+#whatsapp {
+  width: 30px;
+  height: 30px;
+}
+
+.titulo {
   display: flex;
   flex-direction: column;
-  /* Alinea el contenido verticalmente */
   justify-content: center;
-  /* Centra verticalmente */
   align-items: center;
-  /* Centra horizontalmente */
   height: 100%;
-  /* Asegura que ocupe el 100% de la altura de la ventana */
   background-color: rgb(183, 119, 243);
   margin-bottom: 10px;
 }
@@ -328,11 +356,9 @@ button:first-child {
   color: white;
   background-color: rgba(12, 9, 9, 0.774);
   border-color: white;
-  /* Añade margen a la derecha del primer botón */
 }
 
 button:last-child {
   margin-left: 10px;
-  /* Añade margen a la izquierda del segundo botón */
 }
 </style>

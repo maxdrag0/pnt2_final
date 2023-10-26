@@ -1,60 +1,88 @@
 <template>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <router-link to="/">
-                    <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
-                </router-link>
+  <!-- NAVEGACION -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <router-link to="/">
+          <img
+            id="baston"
+            src="../assets/images/baston.png"
+            alt="Botón de Inicio"
+          />
+        </router-link>
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li>
+            <a>
+              <router-link to="/User">
+                <img
+                  id="perfil"
+                  src="../assets/images/perfil.png"
+                  alt="Botón de PERFIL"
+                />
+              </router-link>
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li>
-                        <a>
-                            <router-link to="/User">
-                                <img id="perfil" src="../assets/images/perfil.png" alt="Botón de PERFIL" />
-                            </router-link>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Mi Perfil
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <router-link class="dropdown-item" to="/RegisterForm">Mis Datos</router-link>
-                            </li>
-                            <li>
-                                <router-link class="dropdown-item" to="/RegisterForm">Certificaciones</router-link>
-                            </li>
-                            <li>
-                                <router-link class="dropdown-item" to="/RegisterForm">Mis Solicitudes</router-link>
-                            </li>
-                            <li>
-                                <router-link class="dropdown-item" to="/RegisterForm">Solicitudes Completadas</router-link>
-                            </li>
-                            <li>
-                                <router-link class="dropdown-item" to="/RegisterForm">Mis Retos</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-  <div>
-    <!-- NAVEGACION -->
-    <!-- Aquí iría tu código de navegación si lo necesitas -->
-
-    <!-- PERFIL -->
-    <div v-if="userProfile">
-      <body>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Mi Perfil
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Mis Datos</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Certificaciones</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Mis Solicitudes</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Solicitudes Completadas</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Mis Retos</router-link
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- PERFIL -->
+  <body>
+    <section class="perfil">
+      <div v-if="userProfile">
         <div class="card" style="width: 18rem">
           <img
             class="card-img-top"
@@ -77,10 +105,33 @@
             <a href="#" class="card-link">Ver solicitudes</a>
           </div>
         </div>
-      </body>
-    </div>
-    <div v-else>Cargando perfil...</div>
-  </div>
+      </div>
+      <div v-else>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <h5>Cargando perfil...</h5>
+      </div>
+    </section>
+  </body>
 </template>
 
 <script setup>
@@ -108,12 +159,19 @@ onErrorCaptured((error) => {
 
 <style scoped>
 /* Tus estilos aquí */
-.body {
+/* .body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+} */
+.perfil {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-
 .card {
   margin-top: 20px;
 }
