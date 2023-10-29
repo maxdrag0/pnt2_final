@@ -52,65 +52,61 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios';
+import { ref } from 'vue';
 
-export default {
-  data() {
-    return {
-      nombre: '',
-      apellido: '',
-      email: '',
-      tipoUsuario: '',
-      password: '',
-      confirmPassword: '',
-      errors: {},
-    };
-  },
-  methods: {
-    validateForm() {
-      this.errors = {};
+const nombre = ref('');
+const apellido = ref('');
+const email = ref('');
+const tipoUsuario = ref('');
+const password = ref('');
+const confirmPassword = ref('');
+const errors = ref({});
 
-      if (!this.nombre) {
-        this.errors.nombre = 'El nombre es requerido.';
-      }
+const validateForm = () => {
+  errors.value = {};
 
-      if (!this.apellido) {
-        this.errors.apellido = 'El apellido es requerido.';
-      }
+  if (!nombre.value) {
+    errors.value.nombre = 'El nombre es requerido.';
+  }
 
-      if (!this.email) {
-        this.errors.email = 'El email es requerido.';
-      }
+  if (!apellido.value) {
+    errors.value.apellido = 'El apellido es requerido.';
+  }
 
-      if (!this.password) {
-        this.errors.password = 'La contraseña es requerida.';
-      } else if (this.password !== this.confirmPassword) {
-        this.errors.confirmPassword = 'Las contraseñas no coinciden.';
-      }
+  if (!email.value) {
+    errors.value.email = 'El email es requerido.';
+  }
 
-      if (Object.keys(this.errors).length === 0) {
-        this.submitRequest();
-      }
-    },
-    async submitRequest() {
-      try {
-        const response = await axios.post('https://6525d5d667cfb1e59ce7b745.mockapi.io/:endpoint', {
-          nombre: this.nombre,
-          apellido: this.apellido,
-          email: this.email,
-          tipoUsuario: this.tipoUsuario,
-          password: this.password,
-        });
+  if (!password.value) {
+    errors.value.password = 'La contraseña es requerida.';
+  } else if (password.value !== confirmPassword.value) {
+    errors.value.confirmPassword = 'Las contraseñas no coinciden.';
+  }
 
-        if (response.status === 201) { // Verifica que el usuario fue creado correctamente
-          this.$router.push({ name: 'UserProfile', params: { userId: response.data.id } });
-        }
-      } catch (error) {
-        console.error('Error al registrar usuario:', error);
-      }
-    },
-  },
+  if (Object.keys(errors.value).length === 0) {
+    submitRequest();
+  }
+};
+
+const submitRequest = async () => {
+  try {
+    const response = await axios.post('https://6525d5d667cfb1e59ce7b745.mockapi.io/:endpoint', {
+      nombre: nombre.value,
+      apellido: apellido.value,
+      email: email.value,
+      tipoUsuario: tipoUsuario.value,
+      password: password.value,
+    });
+
+    if (response.status === 201) {
+      // Verifica que el usuario fue creado correctamente
+      this.$router.push({ name: 'UserProfile', params: { userId: response.data.id } });
+    }
+  } catch (error) {
+    console.error('Error al registrar usuario:', error);
+  }
 };
 </script>
 

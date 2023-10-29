@@ -29,34 +29,28 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-export default {
-  data() {
-    return {
-      email: "",
-    };
-  },
-  methods: {
-    async handleSubmit() {
-      try {
-        const response = await axios.post('https://6525d5d667cfb1e59ce7b745.mockapi.io/users', {
-          email: this.email
-        });
+const email = ref('');
+const router = useRouter();
 
+const handleSubmit = async () => {
+  try {
+    const response = await axios.post('https://6525d5d667cfb1e59ce7b745.mockapi.io/users', {
+      email: email.value
+    });
 
-        if (response.status === 201) {
-          this.$router.push('/dashboard');
-        } else {
-          console.error('Algo salió mal:', response);
-        }
-
-      } catch (error) {
-        console.error('Ocurrió un error', error);
-      }
-    },
-  },
+    if (response.status === 201) {
+      router.push('/dashboard');
+    } else {
+      console.error('Algo salió mal:', response);
+    }
+  } catch (error) {
+    console.error('Ocurrió un error', error);
+  }
 };
 </script>
 

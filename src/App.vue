@@ -4,10 +4,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-};
+<script setup>
+const name = 'App';
 </script>
 
 <style>

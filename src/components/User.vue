@@ -7,18 +7,13 @@
         <input v-model="user.password" type="password" id="password" required />
     </div>
 </template>
-  
-<script>
-export default {
-    props: {
-        user: {
-            type: Object,
-            required: true
-        }
-    }
-};
+
+<script setup>
+import { defineProps } from 'vue';
+
+const { user } = defineProps(['user']);
 </script>
-  
+
 <style scoped>
 .user-form {
     margin-bottom: 20px;
@@ -36,4 +31,3 @@ input {
     box-sizing: border-box;
 }
 </style>
-  

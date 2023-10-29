@@ -36,10 +36,10 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/LoginForm">Anciano</router-link>
+                  <a class="dropdown-item" href="#ancianos">Anciano</a>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/LoginForm">VoluntARio</router-link>
+                  <a class="dropdown-item" href="#voluntarios">VoluntARio</a>
                 </li>
               </ul>
             </li>
@@ -145,17 +145,17 @@
 
   <section>
     <!-- //Seccion sobre nosotros -->
-    <div class="titulo">
+    <div class="titulo" id="ancianos">
       <h1>Sobre nosotros</h1>
-      <h2>VOLUNTARIOS</h2>
+      <h2>MAYORES</h2>
     </div>
     <p>
         Conectamos a voluntarios con ancianos que necesitan asistencia en sus
         tareas diarias.
     </p>
-    <div class="titulo">
+    <div class="titulo" id="voluntarios">
       <h1>Sobre nosotros</h1>
-      <h2>MAYORES</h2>
+      <h2>VOLUNTARIOS</h2>
     </div>
     <p>
         Conectamos a voluntarios con ancianos que necesitan asistencia en sus
@@ -167,7 +167,7 @@
     <h5>Contactanos!</h5>
     <a
       href="//wa.me/5491157962522/?text=Hola%20Maxi%20que%20buen%20trabajo%20hicieron!"
-      target="_blank"
+      targnpet="_blank"
     >
       <img
         id="whatsapp"
@@ -187,7 +187,6 @@ const formulario = ref(true);
 const cambiarFormulario = () => {
   formulario.value = !formulario.value;
 };
-
 const formularioFalse = ()=>{
   formulario.value = false
 }
@@ -202,19 +201,30 @@ H3 {
   padding-top: 100px;
 }
 
+p{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
 footer{
-  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 #baston  {
   width: 40px;
-  /* Establece el ancho de la imagen */
   height: 40px;
 }
 
 #whatsapp {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 }
 
 .titulo {
@@ -255,11 +265,8 @@ img {
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
-  /* Fondo gris claro */
   border: 1px solid #000;
-  /* Borde sólido de 2 píxeles en color negro */
   padding: 10px;
-  /* Agrega espacio interno para el contenido */
 }
 
 .container-comienzo form {

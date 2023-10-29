@@ -4,12 +4,23 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <router-link to="/">
-          <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
+          <img
+            id="baston"
+            src="../assets/images/baston.png"
+            alt="Botón de Inicio"
+          />
         </router-link>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -17,46 +28,94 @@
         <ul class="navbar-nav">
           <li>
             <a>
-              <router-link to="/User">
-                <img id="perfil" src="../assets/images/perfil.png" alt="Botón de PERFIL" />
+              <router-link to="/UserProfile">
+                <img
+                  id="perfil"
+                  src="../assets/images/perfil.png"
+                  alt="Botón de PERFIL"
+                />
               </router-link>
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Mi Perfil
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">Mis Datos</router-link>
+                <router-link class="dropdown-item" to="/UserProfile"
+                  >Mis Datos</router-link
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">Certificaciones</router-link>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Mis Solicitudes</router-link
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Solicitudes">Mis Solicitudes</router-link>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Certificaciones</a
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">Solicitudes Completadas</router-link>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Solicitudes Completadas</a
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">Mis Retos</router-link>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Retos</a
+                >
               </li>
             </ul>
           </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Componentes!
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/User">User</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
+                </li>
+              </ul>
+            </li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- FIN NAVEGACION -->
 
-
-
   <div class="container-comienzo-componente">
     <form @submit.prevent="submitSolicitud">
       <div class="mb-3">
         <label for="asunto" class="form-label">Asunto</label>
         <input type="text" class="form-control" id="asunto" v-model="asunto" />
+      </div>
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo</label>
+        <input type="text" class="form-control" id="tipo" />
+      </div>
+      <div class="mb-3">
+        <label for="direccion" class="form-label">Direccion</label>
+        <input type="text" class="form-control" id="direccion"/>
       </div>
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
@@ -95,5 +154,19 @@ const submitSolicitud = async () => {
 </script>
 
 <style>
-/* Estilos similares al componente RegisterForm.vue */
+#disable{
+  color: grey;
+}
+
+.container-comienzo-componente{
+  background-color: rgb(212, 165, 255);
+  flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    }
 </style>

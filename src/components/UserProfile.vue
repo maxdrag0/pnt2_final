@@ -28,7 +28,7 @@
         <ul class="navbar-nav">
           <li>
             <a>
-              <router-link to="/User">
+              <router-link to="/UserProfile">
                 <img
                   id="perfil"
                   src="../assets/images/perfil.png"
@@ -49,13 +49,8 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/RegisterForm"
+                <router-link class="dropdown-item" to="/UserProfile"
                   >Mis Datos</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/RegisterForm"
-                  >Certificaciones</router-link
                 >
               </li>
               <li>
@@ -64,17 +59,44 @@
                 >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/RegisterForm"
-                  >Solicitudes Completadas</router-link
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Certificaciones</a
                 >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/RegisterForm"
-                  >Mis Retos</router-link
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Solicitudes Completadas</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Retos</a
                 >
               </li>
             </ul>
           </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Componentes!
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/User">User</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
+                </li>
+              </ul>
+            </li>
         </ul>
       </div>
     </div>
@@ -174,5 +196,9 @@ onErrorCaptured((error) => {
 }
 .card {
   margin-top: 20px;
+}
+
+#disable{
+  color: grey;
 }
 </style>
