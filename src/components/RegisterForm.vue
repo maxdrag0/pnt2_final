@@ -1,9 +1,70 @@
 <template>
   <div>
-    <nav class="navbar">
-      <router-link to="/">
-        <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
-      </router-link>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <router-link to="/">
+            <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
+          </router-link>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ingresa!
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <router-link class="dropdown-item" to="/RegisterForm">Registrate</router-link>
+                </li>
+                <li>
+                  <a class="dropdown-item" @click="formularioFalse()"
+                    >Inicia sesion</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                About Us
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#ancianos">Anciano</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#voluntarios">VoluntARio</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Componentes!
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/User">User</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <div class="container-register">

@@ -58,9 +58,6 @@
                   <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
-                </li>
-                <li>
                   <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
                 </li>
               </ul>
@@ -109,7 +106,7 @@
               <input type="email" class="form-control" id="email" required />
             </div>
 
-            <router-link to="/UserProfile"><button type="submit" class="btn btn-primary">
+            <router-link to="/RegisterForm"><button type="submit" class="btn btn-primary">
                 Registrate!
               </button></router-link>
             <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
@@ -237,14 +234,19 @@ footer{
   margin-bottom: 10px;
 }
 
+.main{
+  flex:1;
+}
+
+
 .container {
   display: flex;
   justify-content: space-between;
-  /* Añade espacio entre los divs */
   margin-bottom: 10%;
 }
 
 .container-img {
+  text-align: center;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -254,8 +256,7 @@ footer{
 
 img {
   width: 600px;
-  /* Establece el ancho de la imagen */
-  height: 300px;
+  height: auto;
 }
 
 .container-comienzo {

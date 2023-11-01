@@ -89,9 +89,6 @@
                   <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
-                </li>
-                <li>
                   <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
                 </li>
               </ul>
@@ -123,7 +120,6 @@
                     <td>Castelar</td>
                     <td>Farmacia</td>
                     <td>
-                        <img id="aceptar" src="../assets/images/aceptar.png" alt="aceptarSolicitud" />
                         <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
                     </td>
                 </tr>
@@ -149,7 +145,6 @@
                         {{ solicitud.tipoSolicitud }}
                     </td>
                     <td>
-                        <img id="aceptar" src="../assets/images/aceptar.png" alt="aceptarSolicitud" />
                         <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
                     </td>
                 </tr>

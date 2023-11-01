@@ -76,27 +76,36 @@
             </ul>
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Componentes!
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
-                </li>
-                <li>
-                  <router-link class="dropdown-item" to="/User">User</router-link>
-                </li>
-                <li>
-                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
-                </li>
-                <li>
-                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
-                </li>
-                <li>
-                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
-                </li>
-              </ul>
-            </li>
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Componentes!
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <router-link class="dropdown-item" to="/UserProfile"
+                  >UserProfile</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/User">User</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/Solicitudes"
+                  >Solicitudes</router-link
+                >
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/CrearSolicitud"
+                  >CrearSolicitud</router-link
+                >
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -123,12 +132,52 @@
             <li class="list-group-item">Valoracion:</li>
           </ul>
           <div class="card-body">
-            <a href="#" class="card-link">Crear solicitud</a>
-            <a href="#" class="card-link">Ver solicitudes</a>
+            <router-link to="/CrearSolicitud" class="card-link"
+              >Crear solicitud</router-link
+            >
+            <router-link to="/Solicitudes" class="card-link"
+              >Ver solicitudes</router-link
+            >
           </div>
         </div>
-      </div>
-      <div v-else>
+
+        <div class="tabla-solicitudes-aceptadas">
+          <h1>SOLICITUDES ACEPTADAS PENDIENTES</h1>
+          <div class="tablaSolicitudes">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Direccion</th>
+                  <th scope="col">Ciudad</th>
+                  <th scope="col">Tipo de solicitud</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="solicitudes in solicitudes">
+                  <th scope="row">
+                    <router-link
+                      class="nav-link"
+                      :to="'/persona/' + entidad.id"
+                      >{{ entidad.id }}</router-link
+                    >
+                  </th>
+                  <td>
+                    {{ solicitud.direccion }}
+                  </td>
+                  <td>
+                    {{ solicitud.ciudad }}
+                  </td>
+                  <td>
+                    {{ solicitud.tipoSolicitud }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+        <div v-else>
         <div class="spinner-grow text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -153,19 +202,44 @@
         <h5>Cargando perfil...</h5>
       </div>
     </section>
+    <!-- vista previa perfil -->
   </body>
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref, onMounted, onErrorCaptured } from "vue";
+const mostrarPerfil = ref("true");
+const solicitudes = ref([]);
+
+onMounted(() => {
+  solicitudes.value = [];
+  let urlGet = "xxx";
+
+  fetch(urlGet)
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json(); // Convierte la respuesta a JSON
+      } else {
+        throw new Error("No se pudo obtener la información");
+      }
+    })
+    .then((data) => {
+      solicitudes.value = data; //Obtengo el results que es donde esta mi vector que quiero trabajar
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
 
 const userProfile = ref(null);
 
 const fetchUserProfile = async () => {
   const userId = $route.params.userId;
   try {
-    const response = await axios.get(`https://6525d5d667cfb1e59ce7b745.mockapi.io/${userId}`);
+    const response = await axios.get(
+      `https://6525d5d667cfb1e59ce7b745.mockapi.io/${userId}`
+    );
     userProfile.value = response.data;
   } catch (error) {
     console.error("Hubo un error al obtener el perfil del usuario:", error);
@@ -180,13 +254,12 @@ onErrorCaptured((error) => {
 </script>
 
 <style scoped>
-/* Tus estilos aquí */
-/* .body {
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-} */
+}
 .perfil {
   border-radius: 10px;
   display: flex;
@@ -198,7 +271,7 @@ onErrorCaptured((error) => {
   margin-top: 20px;
 }
 
-#disable{
+#disable {
   color: grey;
 }
 </style>

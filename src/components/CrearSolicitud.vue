@@ -90,9 +90,6 @@
                   <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearUsuario">CrearUsuario</router-link>
-                </li>
-                <li>
                   <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
                 </li>
               </ul>
@@ -110,12 +107,20 @@
         <input type="text" class="form-control" id="asunto" v-model="asunto" />
       </div>
       <div class="mb-3">
-        <label for="tipo" class="form-label">Tipo</label>
-        <input type="text" class="form-control" id="tipo" />
+        <label for="tipoSolicitud" class="form-label">Tipo de Solicitud</label>
+        <select v-model="tipoSolicitud" id="tipoSolicitud" class="form-control">
+            <option>Especialista</option>
+            <option>Farmacia</option>
+            <option>Supermercado</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="direccion" class="form-label">Direccion</label>
-        <input type="text" class="form-control" id="direccion"/>
+        <input type="text" class="form-control" id="direccion" v-model="direccion"/>
+      </div>
+      <div class="mb-3">
+        <label for="ciudad" class="form-label">Ciudad</label>
+        <input type="text" class="form-control" id="ciudad" v-model="ciudad"/>
       </div>
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
@@ -131,8 +136,13 @@
 import axios from "axios";
 import { ref } from "vue";
 
-const asunto = ref("");
-const descripcion = ref("");
+const asunto = ref('');
+const nombre = ref('');   // lo trae del usuario
+const apellido = ref(''); // lo trae del usuario
+const tipoSolicitud = ref('');
+const direccion = ref('');
+const ciudad = ref('');
+const descripcion = ref('');
 
 const submitSolicitud = async () => {
   try {
