@@ -134,6 +134,32 @@
         >
       </div>
     </div>
+    <div class="tabla-solicitudes-aceptadas">
+          <h1>SOLICITUDES ACEPTADAS PENDIENTES</h1>
+          <div class="tablaSolicitudes">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Direccion</th>
+                  <th scope="col">Ciudad</th>
+                  <th scope="col">Tipo de solicitud</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Calle Falsa 123</td>
+                    <td>Castelar</td>
+                    <td>Farmacia</td>
+                    <td>
+                        <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
   </body>
 </template>
 
@@ -160,5 +186,14 @@
 
 #disable {
   color: grey;
+}
+
+h1{
+  text-align: center;
+}
+
+.tabla-solicitudes-aceptadas{
+  margin-left: 15%;
+  margin-right: 15%;
 }
 </style>
