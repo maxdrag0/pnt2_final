@@ -176,8 +176,8 @@
             </table>
           </div>
         </div>
-        </div>
-        <div v-else>
+      </div>
+      <div v-else>
         <div class="spinner-grow text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>

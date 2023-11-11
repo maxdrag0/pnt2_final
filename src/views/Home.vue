@@ -4,24 +4,43 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <router-link to="/">
-            <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
+            <img
+              id="baston"
+              src="../assets/images/baston.png"
+              alt="Botón de Inicio"
+            />
           </router-link>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Ingresa!
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/RegisterForm">Registrate</router-link>
+                  <router-link class="dropdown-item" to="/RegisterForm"
+                    >Registrate</router-link
+                  >
                 </li>
                 <li>
                   <a class="dropdown-item" @click="formularioFalse()"
@@ -31,7 +50,13 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 About Us
               </a>
               <ul class="dropdown-menu">
@@ -44,21 +69,35 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Componentes!
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
+                  <router-link class="dropdown-item" to="/UserProfile"
+                    >UserProfile</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/User">User</router-link>
+                  <router-link class="dropdown-item" to="/User"
+                    >User</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
+                  <router-link class="dropdown-item" to="/Solicitudes"
+                    >Solicitudes</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
+                  <router-link class="dropdown-item" to="/CrearSolicitud"
+                    >CrearSolicitud</router-link
+                  >
                 </li>
               </ul>
             </li>
@@ -79,37 +118,66 @@
   <main>
     <section class="container">
       <section class="container-img">
-        <img src="/src/assets/images/abuelos-voluntarios.jpg" alt="imagen-abuelos" />
+        <img
+          src="/src/assets/images/abuelos-voluntarios.jpg"
+          alt="imagen-abuelos"
+        />
       </section>
 
       <section class="container-comienzo">
         <h2>Inicia sesión o regístrate para comenzar</h2>
 
         <section class="container-comienzo-registro" v-if="formulario">
-          <form>
-            <legend>
-              Registrate
-            </legend>
+          <form @submit.prevent="handleSubmit">
+            <legend>Registrate</legend>
 
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre" aria-describedby="Nombre" required />
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                aria-describedby="Nombre"
+                required
+                placeholder="Juan"
+                v-model="nombre"
+              />
             </div>
 
             <div class="mb-3">
               <label for="Apellido" class="form-label">Apellido</label>
-              <input type="text " class="form-control" id="Apellido" required />
+              <input
+                type="text "
+                class="form-control"
+                id="Apellido"
+                required
+                placeholder="Perez"
+                v-model="apellido"
+              />
             </div>
 
             <div class="mb-3">
               <label for="email" class="form-label">Mail</label>
-              <input type="email" class="form-control" id="email" required />
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                required
+                placeholder="juanperez@gmail.com"
+                v-model="mail"
+              />
             </div>
 
-            <router-link to="/RegisterForm"><button type="submit" class="btn btn-primary">
+            <router-link to="/RegisterForm"
+              ><button type="submit" class="btn btn-primary">
                 Registrate!
-              </button></router-link>
-            <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
+              </button></router-link
+            >
+            <button
+              @click="cambiarFormulario()"
+              type="submit"
+              class="btn btn-primary"
+            >
               Inicia sesion!
             </button>
           </form>
@@ -125,15 +193,26 @@
 
             <div class="mb-3">
               <label for="contraseña" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="contraseña" required />
+              <input
+                type="password"
+                class="form-control"
+                id="contraseña"
+                required
+              />
             </div>
 
-            <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
+            <button
+              @click="cambiarFormulario()"
+              type="submit"
+              class="btn btn-primary"
+            >
               Registrate!
             </button>
-            <router-link to="/UserProfile"><button type="submit" class="btn btn-primary">
+            <router-link to="/UserProfile"
+              ><button type="submit" class="btn btn-primary">
                 Inicia sesion!
-              </button></router-link>
+              </button></router-link
+            >
           </form>
         </section>
       </section>
@@ -147,16 +226,16 @@
       <h2>MAYORES</h2>
     </div>
     <p>
-        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
-        tareas diarias.
+      Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+      tareas diarias.
     </p>
     <div class="titulo" id="voluntarios">
       <h1>Sobre nosotros</h1>
       <h2>VOLUNTARIOS</h2>
     </div>
     <p>
-        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
-        tareas diarias.
+      Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+      tareas diarias.
     </p>
   </section>
 
@@ -175,37 +254,47 @@
   </footer>
 </template>
 
-
 <script setup>
-import { onMounted, ref } from "vue";
+import { defineEmits , ref } from "vue";
 
 const formulario = ref(true);
+const usuario = ref({
+  nombre: "",
+  apellido: "",
+  mail: "",
+  tipoUsuario: 0,
+  contrasenia: "",
+  confirmarContrasenia:"",
+});
 
 const cambiarFormulario = () => {
   formulario.value = !formulario.value;
 };
-const formularioFalse = ()=>{
-  formulario.value = false
-}
+const formularioFalse = () => {
+  formulario.value = false;
+};
+
+const { emit } = defineEmits();
+
 const handleSubmit = () => {
   // Lógica de envío de formulario
-}
-
+  emit('enviarUsuario', usuario.value);
+};
 </script>
 
 <style>
-H3 {
+h3 {
   padding-top: 100px;
 }
 
-p{
+p {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
 }
-footer{
+footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -214,7 +303,7 @@ footer{
   margin-bottom: 10px;
 }
 
-#baston  {
+#baston {
   width: 40px;
   height: 40px;
 }
@@ -234,10 +323,9 @@ footer{
   margin-bottom: 10px;
 }
 
-.main{
-  flex:1;
+.main {
+  flex: 1;
 }
-
 
 .container {
   display: flex;
@@ -280,6 +368,10 @@ img {
   box-shadow: 10px 9px rgb(67, 34, 97);
   margin-bottom: 3%;
   margin-top: 0%;
+}
+
+.form-control::placeholder {
+  color: rgba(165, 164, 164, 0.774);
 }
 
 button:first-child {

@@ -115,7 +115,9 @@
 
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
+
+const { usuario } = defineProps(['usuario']);
 
 const nombre = ref('');
 const apellido = ref('');
