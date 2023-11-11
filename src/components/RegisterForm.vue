@@ -71,7 +71,7 @@
       <form @submit.prevent="validateForm">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input v-model="nombre" type="text" class="form-control" id="nombre" />
+          <input v-model="nombre" type="text" class="form-control" id="nombre"/>
           <p v-if="errors.nombre" class="text-danger">{{ errors.nombre }}</p>
         </div>
 
@@ -116,8 +116,6 @@
 <script setup>
 import axios from 'axios';
 import { ref, defineProps } from 'vue';
-
-const { usuario } = defineProps(['usuario']);
 
 const nombre = ref('');
 const apellido = ref('');
@@ -171,6 +169,12 @@ const submitRequest = async () => {
     console.error('Error al registrar usuario:', error);
   }
 };
+
+const copiarDatos = (usuario)=>{
+  this.value.nombre = usuario.nombre;
+  this.value.apellido = usuario.apellido;
+  this.value.mail = usuario.mail;
+}
 </script>
 
 <style>

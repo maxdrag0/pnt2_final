@@ -169,7 +169,10 @@
             </div>
 
             <router-link to="/RegisterForm"
-              ><button type="submit" class="btn btn-primary">
+              ><button
+              @click="$emit('copiarDatos(usuario)')"
+              type="submit"
+              class="btn btn-primary">
                 Registrate!
               </button></router-link
             >
@@ -255,16 +258,13 @@
 </template>
 
 <script setup>
-import { defineEmits , ref } from "vue";
+import { ref } from "vue";
 
 const formulario = ref(true);
 const usuario = ref({
   nombre: "",
   apellido: "",
   mail: "",
-  tipoUsuario: 0,
-  contrasenia: "",
-  confirmarContrasenia:"",
 });
 
 const cambiarFormulario = () => {
@@ -274,11 +274,8 @@ const formularioFalse = () => {
   formulario.value = false;
 };
 
-const { emit } = defineEmits();
-
 const handleSubmit = () => {
   // Lógica de envío de formulario
-  emit('enviarUsuario', usuario.value);
 };
 </script>
 
