@@ -56,7 +56,7 @@
       <form @submit.prevent="validateForm">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input v-model="nombre" type="text" class="form-control" id="nombre"/>
+          <input v-model="nombre" type="text" class="form-control" id="nombre" />
           <p v-if="errors.nombre" class="text-danger">{{ errors.nombre }}</p>
         </div>
 
@@ -99,8 +99,12 @@
 </template>
 
 <script setup>
+
 import axios from 'axios';
-import { ref, onMounted} from 'vue';
+import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
+
+const router = useRouter();
 
 const nombre = ref('');
 const apellido = ref('');
@@ -149,7 +153,8 @@ const submitRequest = async () => {
     if (response.status === 201) {
       // Verifica que el usuario fue creado correctamente
       alert("Usuario creado exitosamente");
-      $router.push({ name: 'UserProfile', params: { userId: response.data.id } });
+      router.push('/User');
+      $router.push({ name: 'User', params: { userId: response.data.id } });
     }
   } catch (error) {
     console.error('Error al registrar usuario:', error);

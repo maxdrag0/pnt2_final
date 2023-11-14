@@ -4,23 +4,12 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <router-link to="/">
-          <img
-            id="baston"
-            src="../assets/images/baston.png"
-            alt="Botón de Inicio"
-          />
+          <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
         </router-link>
       </a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -29,80 +18,48 @@
           <li>
             <a>
               <router-link to="/UserProfile">
-                <img
-                  id="perfil"
-                  src="../assets/images/perfil.png"
-                  alt="Botón de PERFIL"
-                />
+                <img id="perfil" src="../assets/images/perfil.png" alt="Botón de PERFIL" />
               </router-link>
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Mi Perfil
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile"
-                  >Mis Datos</router-link
-                >
+                <router-link class="dropdown-item" to="/UserProfile">Mis Datos</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/RegisterForm"
-                  >Mis Solicitudes</router-link
-                >
+                <router-link class="dropdown-item" to="/RegisterForm">Mis Solicitudes</router-link>
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable"
-                  >Certificaciones</a
-                >
+                <a class="dropdown-item" aria-disabled="true" id="disable">Certificaciones</a>
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable"
-                  >Solicitudes Completadas</a
-                >
+                <a class="dropdown-item" aria-disabled="true" id="disable">Solicitudes Completadas</a>
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable"
-                  >Mis Retos</a
-                >
+                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Retos</a>
               </li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Componentes!
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile"
-                  >UserProfile</router-link
-                >
+                <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
               </li>
               <li>
                 <router-link class="dropdown-item" to="/User">User</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Solicitudes"
-                  >Solicitudes</router-link
-                >
+                <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/CrearSolicitud"
-                  >CrearSolicitud</router-link
-                >
+                <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
               </li>
             </ul>
           </li>
@@ -111,15 +68,12 @@
     </div>
   </nav>
   <!-- PERFIL -->
+
   <body>
     <section class="perfil">
       <div v-if="userProfile">
         <div class="card" style="width: 18rem">
-          <img
-            class="card-img-top"
-            src="../assets/images/perfil.png"
-            alt="Card image cap"
-          />
+          <img class="card-img-top" src="../assets/images/perfil.png" alt="Card image cap" />
           <div class="card-body">
             <h5 class="card-title">{{ userProfile.userName }}</h5>
             <p class="card-text">{{ userProfile.userDescription }}</p>
@@ -132,12 +86,8 @@
             <li class="list-group-item">Valoracion:</li>
           </ul>
           <div class="card-body">
-            <router-link to="/CrearSolicitud" class="card-link"
-              >Crear solicitud</router-link
-            >
-            <router-link to="/Solicitudes" class="card-link"
-              >Ver solicitudes</router-link
-            >
+            <router-link to="/CrearSolicitud" class="card-link">Crear solicitud</router-link>
+            <router-link to="/Solicitudes" class="card-link">Ver solicitudes</router-link>
           </div>
         </div>
 
@@ -156,11 +106,7 @@
               <tbody>
                 <tr v-for="solicitudes in solicitudes">
                   <th scope="row">
-                    <router-link
-                      class="nav-link"
-                      :to="'/persona/' + entidad.id"
-                      >{{ entidad.id }}</router-link
-                    >
+                    <router-link class="nav-link" :to="'/persona/' + entidad.id">{{ entidad.id }}</router-link>
                   </th>
                   <td>
                     {{ solicitud.direccion }}
@@ -209,8 +155,26 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted, onErrorCaptured } from "vue";
+import { useRoute } from 'vue-router';
+
+// Dentro de tu setup
+const route = useRoute();
+
+
 const mostrarPerfil = ref("true");
 const solicitudes = ref([]);
+
+const solicitudesAceptadas = ref([]);
+
+onMounted(async () => {
+  try {
+    const userId = route.params.userId;
+    const response = await axios.get(`https://6525d5d667cfb1e59ce7b745.mockapi.io/solicitudes?estado=aceptada&usuarioId=${userId}`);
+    solicitudesAceptadas.value = response.data;
+  } catch (error) {
+    console.error("Error al cargar solicitudes aceptadas:", error);
+  }
+});
 
 onMounted(() => {
   solicitudes.value = [];
@@ -260,6 +224,7 @@ onErrorCaptured((error) => {
   align-items: center;
   height: 100vh;
 }
+
 .perfil {
   border-radius: 10px;
   display: flex;
@@ -267,6 +232,7 @@ onErrorCaptured((error) => {
   align-items: center;
   height: 100vh;
 }
+
 .card {
   margin-top: 20px;
 }
