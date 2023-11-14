@@ -107,6 +107,10 @@
         <input type="text" class="form-control" id="asunto" v-model="asunto" />
       </div>
       <div class="mb-3">
+        <label for="idUsuario" class="form-label">ID Usuario</label>
+        <input type="number" class="form-control" id="idUsuario" v-model="idUsuario" @input="validateIdUsuario"  />
+      </div>
+      <div class="mb-3">
         <label for="tipoSolicitud" class="form-label">Tipo de Solicitud</label>
         <select v-model="tipoSolicitud" id="tipoSolicitud" class="form-control">
             <option>Especialista</option>
@@ -137,25 +141,40 @@ import axios from "axios";
 import { ref } from "vue";
 
 const asunto = ref('');
-const nombre = ref('');   // lo trae del usuario
-const apellido = ref(''); // lo trae del usuario
+const idUsuario = ref('');
 const tipoSolicitud = ref('');
 const direccion = ref('');
 const ciudad = ref('');
 const descripcion = ref('');
 
+const validateIdUsuario = () => {
+  if (idUsuario.value !== '' && (!Number.isInteger(Number(idUsuario.value)) || idUsuario.value < 0)) {
+    alert("Por favor, ingresa un número entero positivo en el campo ID Usuario.");
+    idUsuario.value = '';
+  }
+};
+
 const submitSolicitud = async () => {
+  if (!asunto.value || !idUsuario.value || !tipoSolicitud.value || !direccion.value || !ciudad.value || !descripcion.value) {
+    alert("Todos los campos son obligatorios. Por favor, completa todos los campos.");
+    return;
+  }
   try {
     const response = await axios.post(
-      "YOUR_API_ENDPOINT_HERE",
+      "https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud",
       {
-        asunto,
-        descripcion,
+        asunto: asunto.value,
+        idUsuario: idUsuario.value,
+        tipoSolicitud: tipoSolicitud.value,
+        direccion: direccion.value,
+        ciudad: ciudad.value,
+        descripcion: descripcion.value,
       }
     );
     if (response.data) {
-      // Acciones en caso de éxito
-      this.$router.push("/algunaRuta");
+      alert("Solicitud creada exitosamente");
+
+      $router.push({ path: "/Solicitudes" });
     }
   } catch (error) {
     console.error("Ocurrió un error al enviar la solicitud:", error);

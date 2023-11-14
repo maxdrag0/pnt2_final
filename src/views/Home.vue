@@ -170,7 +170,7 @@
 
             <router-link to="/RegisterForm"
               ><button
-              @click="$emit('copiarDatos(usuario)')"
+              @click="emitirDatosUsuario"
               type="submit"
               class="btn btn-primary">
                 Registrate!
@@ -243,7 +243,7 @@
   </section>
 
   <footer>
-    <h5>Contactanos!</h5>
+    <h5>Contactanos y decinos como mejorar!</h5>
     <a
       href="//wa.me/5491157962522/?text=Hola%20Maxi%20que%20buen%20trabajo%20hicieron!"
       targnpet="_blank"
@@ -274,9 +274,10 @@ const formularioFalse = () => {
   formulario.value = false;
 };
 
-const handleSubmit = () => {
-  // Lógica de envío de formulario
+const emitirDatosUsuario = () => {
+  emit('copiarDatos', usuario.value);
 };
+
 </script>
 
 <style>

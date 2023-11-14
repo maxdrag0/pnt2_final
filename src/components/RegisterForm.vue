@@ -17,21 +17,6 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Ingresa!
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <router-link class="dropdown-item" to="/RegisterForm">Registrate</router-link>
-                </li>
-                <li>
-                  <a class="dropdown-item" @click="formularioFalse()"
-                    >Inicia sesion</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 About Us
               </a>
               <ul class="dropdown-menu">
@@ -115,7 +100,7 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, defineProps } from 'vue';
+import { ref, onMounted} from 'vue';
 
 const nombre = ref('');
 const apellido = ref('');
@@ -153,7 +138,7 @@ const validateForm = () => {
 
 const submitRequest = async () => {
   try {
-    const response = await axios.post('https://6525d5d667cfb1e59ce7b745.mockapi.io/:endpoint', {
+    const response = await axios.post('https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/usuario', {
       nombre: nombre.value,
       apellido: apellido.value,
       email: email.value,
@@ -163,18 +148,14 @@ const submitRequest = async () => {
 
     if (response.status === 201) {
       // Verifica que el usuario fue creado correctamente
-      this.$router.push({ name: 'UserProfile', params: { userId: response.data.id } });
+      alert("Usuario creado exitosamente");
+      $router.push({ name: 'UserProfile', params: { userId: response.data.id } });
     }
   } catch (error) {
     console.error('Error al registrar usuario:', error);
   }
 };
 
-const copiarDatos = (usuario)=>{
-  this.value.nombre = usuario.nombre;
-  this.value.apellido = usuario.apellido;
-  this.value.mail = usuario.mail;
-}
 </script>
 
 <style>

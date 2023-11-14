@@ -103,8 +103,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
+                    <th scope="col">ID Usuario</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Ciudad</th>
                     <th scope="col">Tipo de solicitud</th>
@@ -114,26 +113,22 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Maximiliano</td>
-                    <td>Drago</td>
+                    <th scope="col">25</th>
                     <td>Calle Falsa 123</td>
                     <td>Castelar</td>
                     <td>Farmacia</td>
                     <td>
-                        <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
+                        <button><img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" /></button>
                     </td>
                 </tr>
-                <tr v-for="solicitudes in solicitudes">
+                <tr v-for="solicitud in solicitudes">
                     <th scope="row">
-                        <router-link class="nav-link" :to="'/persona/' + entidad.id">{{
-                            entidad.id
+                        <router-link class="nav-link" :to="'/persona/' + solicitud.id">{{
+                            solicitud.id
                         }}</router-link>
                     </th>
                     <td>
-                        {{ solicitud.nombre }}
-                    </td>
-                    <td>
-                        {{ solicitud.apellido }}
+                        {{ solicitud.idUsuario }}
                     </td>
                     <td>
                         {{ solicitud.direccion }}
@@ -143,10 +138,14 @@
                     </td>
                     <td>
                         {{ solicitud.tipoSolicitud }}
+                        <!-- COMO ELEGIR TIPO DE SOLICITUD EN BASE AL NUMERO -->
                     </td>
                     <td>
-                        <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
-                    </td>
+                        <button @click="openModal"><img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" /></button>
+                        <!-- POP UP PARA MOSTRAR LA SOLICITUD Y ACEPTARLA O VOLVER -->
+                        <PopUpSolicitud><h2>Este es un modal</h2>
+      <p>¡Hola desde el modal!</p></PopUpSolicitud>
+                      </td>
                 </tr>
             </tbody>
         </table>
@@ -155,11 +154,22 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
+import PopUpSolicitud from "./PopUpSolicitud.vue";
 const solicitudes = ref([]);
+
+  const showModal = ref(false);
+
+  const openModal = () => {
+    showModal.value = true;
+  };
+
+  const closeModal = () => {
+    showModal.value = false;
+  };
 
 onMounted(() => {
     solicitudes.value = [];
-    let urlGet = "xxx";
+    let urlGet = "https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud";
 
     fetch(urlGet)
         .then((response) => {
