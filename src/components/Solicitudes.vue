@@ -80,7 +80,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="solicitud in solicitudes" :key="solicitud.id">
+        <tr>
           <th scope="row">1</th>
           <th scope="col">25</th>
           <td>Calle Falsa 123</td>
@@ -90,7 +90,7 @@
             <button @click="aceptarSolicitud(solicitud.id)">
               Aceptar
             </button>
-            <button @click="seleccionarSolicitud(solicitud); openModal()">
+            <button @click="seleccionarSolicitud(solicitud)">
               <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
             </button>
           </td>
@@ -115,13 +115,14 @@
             <!-- COMO ELEGIR TIPO DE SOLICITUD EN BASE AL NUMERO -->
           </td>
           <td>
-            <button @click="openModal"><img id="pregunta" src="../assets/images/pregunta.png"
-                alt="ver Solicitud" /></button>
-            <!-- POP UP PARA MOSTRAR LA SOLICITUD Y ACEPTARLA O VOLVER -->
-            <PopUpSolicitud>
-              <h2>Este es un modal</h2>
-              <p>¡Hola desde el modal!</p>
-            </PopUpSolicitud>
+            <button @click="aceptarSolicitud(solicitud.id)">
+              Aceptar
+            </button>
+            <button @click="seleccionarSolicitud(solicitud)">
+              <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
+            </button>
+
+
           </td>
         </tr>
       </tbody>
@@ -141,20 +142,12 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-//import PopUpSolicitud from "./Solicitudes.vue";
+
 const solicitudes = ref([]);
 const solicitudSeleccionada = ref(null);
 
 
-const showModal = ref(false);
 
-const openModal = () => {
-  showModal.value = true;
-};
-
-const closeModal = () => {
-  showModal.value = false;
-};
 
 const seleccionarSolicitud = (solicitud) => {
   solicitudSeleccionada.value = solicitud;
