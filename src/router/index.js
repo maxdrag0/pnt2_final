@@ -9,7 +9,8 @@ import CrearSolicitud from '../components/CrearSolicitud.vue'
 const routes = [
   { path: '/', component: Home },
   { path: '/UserProfile/', component: UserProfile },
-  { path: '/RegisterForm', component: RegisterForm },
+  // { path: '/RegisterForm', component: RegisterForm }, Descomentar si no funciona
+  { path: '/RegisterForm/:nombre?/:apellido?/:email?', component: RegisterForm, name: 'RegisterForm' },
   { path: '/User', component: User },
   { path: '/Solicitudes', component: Solicitudes },
   { path: '/CrearSolicitud', component: CrearSolicitud },

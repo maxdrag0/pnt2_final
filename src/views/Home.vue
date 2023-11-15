@@ -104,9 +104,10 @@
                 v-model="mail" />
             </div>
 
-            <router-link to="/RegisterForm"><button @click="emitirDatosUsuario" type="submit" class="btn btn-primary">
-                Registrate!
-              </button></router-link>
+            <button @click="emitirDatosUsuario" type="button" class="btn btn-primary">
+              Registrate!
+            </button>
+
             <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
               Inicia sesion!
             </button>
@@ -167,8 +168,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 
+import { ref } from "vue";
+//NUEVO
+
+import { useRouter } from 'vue-router';
+const router = useRouter();
+//FIN NUEVO
 const formulario = ref(true);
 const usuario = ref({
   nombre: "",
@@ -185,9 +191,26 @@ const formularioFalse = () => {
   formulario.value = false;
 };
 
-const emitirDatosUsuario = () => {
+
+
+/*const emitirDatosUsuario = () => {
   emit('copiarDatos', usuario.value);
+};*/
+
+// NUEVO
+const emitirDatosUsuario = () => {
+  console.log('Datos del usuario:', usuario.value);
+  router.push({
+    name: 'RegisterForm',
+    params: {
+      nombre: usuario.value.nombre,
+      apellido: usuario.value.apellido,
+      email: usuario.value.mail
+    }
+  });
 };
+
+// FIN NUEVO
 
 
 
