@@ -145,7 +145,8 @@ const submitSolicitud = async () => {
       //NUEVO
       router.push('/Solicitudes');
       //FIN NUEVO
-      $router.push({ path: "/Solicitudes" });
+      // $router.push({ path: "/Solicitudes" });
+      $router.push({ name: 'Solicitud', params: { solicitudId: response.data.id } });
 
     }
   } catch (error) {
