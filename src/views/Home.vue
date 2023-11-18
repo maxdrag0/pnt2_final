@@ -168,14 +168,13 @@
               />
             </div>
 
-            <router-link to="/RegisterForm"
-              ><button
-              @click="emitirDatosUsuario"
+            <router-link to="/RegisterForm">
+            <button
               type="submit"
               class="btn btn-primary">
                 Registrate!
-              </button></router-link
-            >
+              </button>
+              </router-link>
             <button
               @click="cambiarFormulario()"
               type="submit"
@@ -211,7 +210,7 @@
             >
               Registrate!
             </button>
-            <router-link to="/UserProfile"
+            <router-link to="UserProfile"
               ><button type="submit" class="btn btn-primary">
                 Inicia sesion!
               </button></router-link
@@ -245,8 +244,8 @@
   <footer>
     <h5>Contactanos y decinos como mejorar!</h5>
     <a
-      href="//wa.me/5491157962522/?text=Hola%20Maxi%20que%20buen%20trabajo%20hicieron!"
-      targnpet="_blank"
+      href="//wa.me/5491157962522/?text=Hola%20Maxi%20y%20Pedro%20que%20buen%20trabajo%20hicieron!"
+      target="_blank"
     >
       <img
         id="whatsapp"
@@ -274,8 +273,12 @@ const formularioFalse = () => {
   formulario.value = false;
 };
 
-const emitirDatosUsuario = () => {
-  emit('copiarDatos', usuario.value);
+const irARutaConParametro = () => {
+  // Acceder al objeto $router para navegar a una nueva ruta
+  $router.push({
+    name: 'RegisterForm',
+    params: { usuario: usuario.value }
+  });
 };
 
 </script>

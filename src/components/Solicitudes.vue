@@ -3,12 +3,23 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <router-link to="/">
-          <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
+          <img
+            id="baston"
+            src="../assets/images/baston.png"
+            alt="Botón de Inicio"
+          />
         </router-link>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -17,48 +28,80 @@
           <li>
             <a>
               <router-link to="/UserProfile">
-                <img id="perfil" src="../assets/images/perfil.png" alt="Botón de PERFIL" />
+                <img
+                  id="perfil"
+                  src="../assets/images/perfil.png"
+                  alt="Botón de PERFIL"
+                />
               </router-link>
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Mi Perfil
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">Mis Datos</router-link>
+                <router-link class="dropdown-item" to="/UserProfile"
+                  >Mis Datos</router-link
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/RegisterForm">Mis Solicitudes</router-link>
+                <router-link class="dropdown-item" to="/RegisterForm"
+                  >Mis Solicitudes</router-link
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Certificaciones</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Certificaciones</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Solicitudes Completadas</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Solicitudes Completadas</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Retos</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Retos</a
+                >
               </li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Componentes!
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
+                <router-link class="dropdown-item" to="/UserProfile"
+                  >UserProfile</router-link
+                >
               </li>
               <li>
                 <router-link class="dropdown-item" to="/User">User</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
+                <router-link class="dropdown-item" to="/Solicitudes"
+                  >Solicitudes</router-link
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
+                <router-link class="dropdown-item" to="/CrearSolicitud"
+                  >CrearSolicitud</router-link
+                >
               </li>
             </ul>
           </li>
@@ -76,25 +119,10 @@
           <th scope="col">Direccion</th>
           <th scope="col">Ciudad</th>
           <th scope="col">Tipo de solicitud</th>
-          <th scope="col">Acciones</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="solicitud in solicitudes" :key="solicitud.id">
-          <th scope="row">1</th>
-          <th scope="col">25</th>
-          <td>Calle Falsa 123</td>
-          <td>Castelar</td>
-          <td>Farmacia</td>
-          <td>
-            <button @click="aceptarSolicitud(solicitud.id)">
-              Aceptar
-            </button>
-            <button @click="seleccionarSolicitud(solicitud); openModal()">
-              <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
-            </button>
-          </td>
-        </tr>
         <tr v-for="solicitud in solicitudes">
           <th scope="row">
             <router-link class="nav-link" :to="'/persona/' + solicitud.id">{{
@@ -102,7 +130,7 @@
             }}</router-link>
           </th>
           <td>
-            {{ solicitud.idUsuario }}
+            {{ solicitud.asunto }}
           </td>
           <td>
             {{ solicitud.direccion }}
@@ -112,77 +140,81 @@
           </td>
           <td>
             {{ solicitud.tipoSolicitud }}
-            <!-- COMO ELEGIR TIPO DE SOLICITUD EN BASE AL NUMERO -->
           </td>
           <td>
-            <button @click="openModal"><img id="pregunta" src="../assets/images/pregunta.png"
-                alt="ver Solicitud" /></button>
-            <!-- POP UP PARA MOSTRAR LA SOLICITUD Y ACEPTARLA O VOLVER -->
-            <PopUpSolicitud>
-              <h2>Este es un modal</h2>
-              <p>¡Hola desde el modal!</p>
-            </PopUpSolicitud>
+            <button @click="seleccionarSolicitud(solicitud)">
+              <img
+                  id="pregunta"
+                  src="../assets/images/pregunta.png"
+                  alt="ver Solicitud"
+                />
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div v-if="solicitudSeleccionada">
-    <h2>Detalles de la Solicitud</h2>
-    <p>ID: {{ solicitudSeleccionada.id }}</p>
-    <p>ID Usuario: {{ solicitudSeleccionada.idUsuario }}</p>
-    <p>Dirección: {{ solicitudSeleccionada.direccion }}</p>
-    <p>Ciudad: {{ solicitudSeleccionada.ciudad }}</p>
-    <p>Tipo de Solicitud: {{ solicitudSeleccionada.tipoSolicitud }}</p>
-
-  </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
-//import PopUpSolicitud from "./Solicitudes.vue";
+import Swal from 'sweetalert2';
+import axios from 'axios';
+
 const solicitudes = ref([]);
 const solicitudSeleccionada = ref(null);
-
-
-const showModal = ref(false);
-
-const openModal = () => {
-  showModal.value = true;
-};
-
-const closeModal = () => {
-  showModal.value = false;
-};
+const solicitudesAceptadas = ref({})
 
 const seleccionarSolicitud = (solicitud) => {
   solicitudSeleccionada.value = solicitud;
+
+  // Mostrar detalles en un modal personalizado
+  if (solicitudSeleccionada.value) {
+    const { id, asunto, direccion, ciudad, tipoSolicitud, descripcion } = solicitudSeleccionada.value;
+
+    Swal.fire({
+      title: 'Detalles de la Solicitud',
+      html: `
+        <p>ID: ${id}</p>
+        <p>Asunto: ${asunto}</p>
+        <p>Dirección: ${direccion}</p>
+        <p>Ciudad: ${ciudad}</p>
+        <p>Tipo de Solicitud: ${tipoSolicitud}</p>
+        <p>Descripción: ${descripcion}</p>
+      `,
+      confirmButtonText: 'Aceptar',
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.value) {
+       await aceptarSolicitud(id)
+      }
+    });
+  }
 };
 
 // La siguiente funcón const es para intentar sacar
 // la solicitud del listado general y moverla a las solicitudes pendientes
 // del usuario una vez que la misma fue aceptada
 
-
-
 const aceptarSolicitud = async (solicitudId) => {
   try {
-    const response = await axios.put(`https://6525d5d667cfb1e59ce7b745.mockapi.io/solicitud/${solicitudId}`, {
-      estado: 'aceptada' // Asegúrate de que este campo coincida con tu modelo de datos
-    });
+    const response = await axios.put(
+      `https://6525d5d667cfb1e59ce7b745.mockapi.io/solicitud/${solicitudId}`,
+      {
+        estado: "aceptada", // Asegúrate de que este campo coincida con tu modelo de datos
+      }
+    );
 
     if (response.status === 200) {
       alert("Solicitud aceptada con éxito");
       // Eliminar la solicitud aceptada de la lista de solicitudes
-      solicitudes.value = solicitudes.value.filter(s => s.id !== solicitudId);
-      // Puedes emitir un evento o realizar otra acción para actualizar la vista del usuario
+      solicitudes.value = solicitudes.value.filter((s) => s.id !== solicitudId);
     }
   } catch (error) {
     console.error("Error al aceptar la solicitud:", error);
   }
 };
-
 
 onMounted(() => {
   solicitudes.value = [];
@@ -205,7 +237,6 @@ onMounted(() => {
 });
 
 //const verSolicitud = () => { };
-
 </script>
 
 <style>
