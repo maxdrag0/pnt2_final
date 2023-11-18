@@ -149,6 +149,7 @@
                   alt="ver Solicitud"
                 />
             </button>
+
           </td>
         </tr>
       </tbody>
@@ -165,6 +166,7 @@ import axios from 'axios';
 const solicitudes = ref([]);
 const solicitudSeleccionada = ref(null);
 const solicitudesAceptadas = ref({})
+
 
 const seleccionarSolicitud = (solicitud) => {
   solicitudSeleccionada.value = solicitud;

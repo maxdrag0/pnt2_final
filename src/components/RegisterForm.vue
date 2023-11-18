@@ -159,6 +159,7 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
@@ -171,6 +172,26 @@ const email = ref("");
 const tipoUsuario = ref("");
 const password = ref("");
 const confirmPassword = ref("");
+=======
+
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
+// NUEVO
+import { useRoute } from 'vue-router';
+// FIN NUEVO
+const router = useRouter();
+
+// NUEVO
+const route = useRoute();
+// FIN NUEVO
+const nombre = ref('');
+const apellido = ref('');
+const email = ref('');
+const tipoUsuario = ref('');
+const password = ref('');
+const confirmPassword = ref('');
+>>>>>>> 56485972b21784b504d634561b4d1e741cf06a01
 const errors = ref({});
 
 const validateForm = () => {
@@ -199,6 +220,9 @@ const validateForm = () => {
   }
 };
 
+
+
+
 const submitRequest = async () => {
   try {
     const response = await axios.post(
@@ -222,6 +246,21 @@ const submitRequest = async () => {
     console.error("Error al registrar usuario:", error);
   }
 };
+<<<<<<< HEAD
+=======
+
+// NUEVO
+
+onMounted(() => {
+  console.log('Ruta recibida:', route.params);
+  if (route.params.nombre) nombre.value = route.params.nombre;
+  if (route.params.apellido) apellido.value = route.params.apellido;
+  if (route.params.email) email.value = route.params.email;
+});
+
+// FIN NUEVO
+
+>>>>>>> 56485972b21784b504d634561b4d1e741cf06a01
 </script>
 
 <style>
