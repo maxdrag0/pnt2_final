@@ -92,36 +92,58 @@
         </div>
 
         <div class="tabla-solicitudes-aceptadas">
-          <h1>SOLICITUDES ACEPTADAS PENDIENTES</h1>
-          <div class="tablaSolicitudes">
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Direccion</th>
-                  <th scope="col">Ciudad</th>
-                  <th scope="col">Tipo de solicitud</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="solicitudes in solicitudes">
-                  <th scope="row">
-                    <router-link class="nav-link" :to="'/persona/' + entidad.id">{{ entidad.id }}</router-link>
-                  </th>
-                  <td>
-                    {{ solicitud.direccion }}
-                  </td>
-                  <td>
-                    {{ solicitud.ciudad }}
-                  </td>
-                  <td>
-                    {{ solicitud.tipoSolicitud }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <h1>SOLICITUDES ACEPTADAS PENDIENTES</h1>
+      <div class="tablaSolicitudes">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Asunto</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">Tipo de solicitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="solicitud in solicitudes">
+              <th scope="row">
+                <router-link
+                  class="nav-link"
+                  :to="'/persona/' + solicitud.id"
+                  >{{ solicitud.id }}</router-link
+                >
+              </th>
+              <td>
+                {{ solicitud.asunto }}
+              </td>
+              <td>
+                {{ solicitud.direccion }}
+              </td>
+              <td>
+                {{ solicitud.ciudad }}
+              </td>
+              <td>
+                {{ solicitud.tipoSolicitud }}
+              </td>
+              <td>
+                <img
+                  @click="seleccionarSolicitud(solicitud)"
+                  id="pregunta"
+                  src="../assets/images/pregunta.png"
+                  alt="ver Solicitud"
+                />
+                <img
+                  @click="eliminarSolicitud(solicitud)"
+                  id="eliminar"
+                  src="../assets/images/cruz.png"
+                  alt="cancelar solicitud"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
       </div>
       <div v-else>
         <div class="spinner-grow text-primary" role="status">
@@ -156,15 +178,58 @@
 import axios from "axios";
 import { ref, onMounted, onErrorCaptured } from "vue";
 import { useRoute } from 'vue-router';
-
+import Swal from "sweetalert2";
 // Dentro de tu setup
 const route = useRoute();
-
-
-const mostrarPerfil = ref("true");
 const solicitudes = ref([]);
-
 const solicitudesAceptadas = ref([]);
+
+const seleccionarSolicitud = (solicitud) => {
+  solicitudSeleccionada.value = solicitud;
+
+  // Mostrar detalles en un modal personalizado
+  if (solicitudSeleccionada.value) {
+    const { id, asunto, direccion, ciudad, tipoSolicitud, descripcion } =
+      solicitudSeleccionada.value;
+
+    Swal.fire({
+      title: "Detalles de la Solicitud",
+      html: `
+        <p>ID: ${id}</p>
+        <p>Asunto: ${asunto}</p>
+        <p>Dirección: ${direccion}</p>
+        <p>Ciudad: ${ciudad}</p>
+        <p>Tipo de Solicitud: ${tipoSolicitud}</p>
+        <p>Descripción: ${descripcion}</p>
+      `,
+      confirmButtonText: "Aceptar",
+      showCancelButton: false,
+    }).then(async (result) => {
+      if (result.value) {
+      }
+    });
+  }
+};
+
+const eliminarSolicitud = (solicitud) => {
+
+  fetch(`https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud/${solicitud.id}`, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+    })
+    .then((task) => {
+      alert("Solicitud eliminada!")
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert("Error en eliminar la solicitud")
+    });
+};
 
 onMounted(async () => {
   try {
@@ -196,6 +261,8 @@ onMounted(() => {
     });
 });
 
+onMounted(fetchUserProfile);
+
 const userProfile = ref(null);
 
 const fetchUserProfile = async () => {
@@ -209,8 +276,6 @@ const fetchUserProfile = async () => {
     console.error("Hubo un error al obtener el perfil del usuario:", error);
   }
 };
-
-onMounted(fetchUserProfile);
 
 onErrorCaptured((error) => {
   console.error("Error capturado:", error);

@@ -53,7 +53,9 @@
                 >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Solicitudes</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Solicitudes</a
+                >
               </li>
               <li>
                 <a class="dropdown-item" aria-disabled="true" id="disable"
@@ -115,7 +117,7 @@
         alt="Card image cap"
       />
       <div class="card-body">
-        <h5 class="card-title">Maximiliano</h5>
+        <h5 class="card-title">{{ usuario.nombre }}</h5>
         <p class="card-text">Voluntario amante de ancianos</p>
       </div>
       <ul class="list-group list-group-flush">
@@ -133,35 +135,203 @@
       </div>
     </div>
     <div class="tabla-solicitudes-aceptadas">
-          <h1>SOLICITUDES ACEPTADAS PENDIENTES</h1>
-          <div class="tablaSolicitudes">
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Direccion</th>
-                  <th scope="col">Ciudad</th>
-                  <th scope="col">Tipo de solicitud</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Calle Falsa 123</td>
-                    <td>Castelar</td>
-                    <td>Farmacia</td>
-                    <td>
-                        <img id="pregunta" src="../assets/images/pregunta.png" alt="ver Solicitud" />
-                    </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <h1>SOLICITUDES ACEPTADAS PENDIENTES</h1>
+      <div class="tablaSolicitudes">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Asunto</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">Tipo de solicitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="solicitud in solicitudes">
+              <th scope="row">
+                <router-link
+                  class="nav-link"
+                  :to="'/persona/' + solicitud.id"
+                  >{{ solicitud.id }}</router-link
+                >
+              </th>
+              <td>
+                {{ solicitud.asunto }}
+              </td>
+              <td>
+                {{ solicitud.direccion }}
+              </td>
+              <td>
+                {{ solicitud.ciudad }}
+              </td>
+              <td>
+                {{ solicitud.tipoSolicitud }}
+              </td>
+              <td>
+                <img
+                  @click="seleccionarSolicitud(solicitud)"
+                  id="pregunta"
+                  src="../assets/images/pregunta.png"
+                  alt="ver Solicitud"
+                />
+                <img
+                  @click="eliminarSolicitud(solicitud)"
+                  id="eliminar"
+                  src="../assets/images/cruz.png"
+                  alt="cancelar solicitud"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
+import Swal from "sweetalert2";
+
+const usuario = ref({});
+const solicitudSeleccionada = ref(null);
+const solicitudes = ref([]);
+
+const seleccionarSolicitud = (solicitud) => {
+  solicitudSeleccionada.value = solicitud;
+
+  // Mostrar detalles en un modal personalizado
+  if (solicitudSeleccionada.value) {
+    const { id, asunto, direccion, ciudad, tipoSolicitud, descripcion } =
+      solicitudSeleccionada.value;
+
+    Swal.fire({
+      title: "Detalles de la Solicitud",
+      html: `
+        <p>ID: ${id}</p>
+        <p>Asunto: ${asunto}</p>
+        <p>Dirección: ${direccion}</p>
+        <p>Ciudad: ${ciudad}</p>
+        <p>Tipo de Solicitud: ${tipoSolicitud}</p>
+        <p>Descripción: ${descripcion}</p>
+      `,
+      confirmButtonText: "Aceptar",
+      showCancelButton: false,
+    }).then(async (result) => {
+      if (result.value) {
+      }
+    });
+  }
+};
+
+const eliminarSolicitud = (solicitud) => {
+  fetch(
+    `https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud/${solicitud.id}`,
+    {
+      method: "DELETE",
+    }
+  )
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((task) => {
+      alert("Solicitud eliminada!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert("Error en eliminar la solicitud");
+    });
+};
+
+// onMounted(() => {
+//   solicitudes.value = [];
+//   let urlGet = "https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud";
+
+//   fetch(urlGet)
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json(); // Convierte la respuesta a JSON
+//       } else {
+//         throw new Error("No se pudo obtener la información");
+//       }
+//     })
+//     .then((data) => {
+//       solicitudes.value = data; //Obtengo el results que es donde esta mi vector que quiero trabajar
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// });
+
+onMounted(async () => {
+  // USUARIO
+  const numeroIngresado = prompt("Por favor, ingrese un número:");
+
+  if (numeroIngresado !== null) {
+    const numero = parseInt(numeroIngresado, 10);
+
+    if (!isNaN(numero)) {
+      const urlUsuario = `https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/usuario/${numero}`;
+
+      try {
+        // Realiza la solicitud para cargar el usuario
+        const responseUsuario = await fetch(urlUsuario);
+
+        if (responseUsuario.ok) {
+          const usuarioCargado = await responseUsuario.json();
+          usuario.value = usuarioCargado; // Asigna el usuario a la variable usuario
+          console.log("Usuario cargado:", usuarioCargado);
+        } else {
+          console.error("No se pudo cargar el usuario");
+        }
+      } catch (error) {
+        console.error("Error al cargar el usuario", error);
+      }
+
+      // SOLICITUDES
+      solicitudes.value = [];
+      const urlSolicitudes =
+        "https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud";
+
+      try {
+        const responseSolicitudes = await fetch(urlSolicitudes);
+
+        if (responseSolicitudes.ok) {
+          const data = await responseSolicitudes.json();
+          solicitudes.value = data;
+          console.log("Solicitudes cargadas:", data);
+        } else {
+          console.error("No se pudieron cargar las solicitudes");
+        }
+      } catch (error) {
+        console.error("Error al cargar las solicitudes", error);
+      }
+    } else {
+      alert("Por favor, ingrese un número válido.");
+    }
+  } else {
+    alert("Operación cancelada por el usuario.");
+  }
+});
+// const cargarSolicitudes = (url) =>{
+//   fetch(urlGet)
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json(); // Convierte la respuesta a JSON
+//       } else {
+//         throw new Error("No se pudo obtener la información");
+//       }
+//     })
+//     .then((data) => {
+//       solicitudes.value = data; //Obtengo el results que es donde esta mi vector que quiero trabajar
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// }
 </script>
 
 <style scoped>
@@ -186,12 +356,18 @@
   color: grey;
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
-.tabla-solicitudes-aceptadas{
+.tabla-solicitudes-aceptadas {
   margin-left: 15%;
   margin-right: 15%;
+}
+
+#eliminar {
+  margin-left: 10%;
+  width: 20px;
+  height: 20px;
 }
 </style>
