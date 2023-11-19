@@ -31,7 +31,7 @@
                 <router-link class="dropdown-item" to="/UserProfile">Mis Datos</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/RegisterForm">Mis Solicitudes</router-link>
+                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Solicitudes</a>
               </li>
               <li>
                 <a class="dropdown-item" aria-disabled="true" id="disable">Certificaciones</a>
