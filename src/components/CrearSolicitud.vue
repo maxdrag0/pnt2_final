@@ -107,7 +107,10 @@
 
 <script setup>
 import axios from "axios";
+import { useRouter } from "vue-router";
 import { ref } from "vue";
+
+const router = useRouter();
 
 const asunto = ref('');
 const idUsuario = ref('');

@@ -227,7 +227,7 @@ const seleccionarSolicitud = (solicitud) => {
 
 const eliminarSolicitud = (solicitud) => {
   fetch(
-    `https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud/${solicitud.id}`,
+    `https://655c16b6ab37729791a9cfba.mockapi.io/voluntar/solicitudAceptada/${solicitud.id}`,
     {
       method: "DELETE",
     }
@@ -237,7 +237,21 @@ const eliminarSolicitud = (solicitud) => {
         return res.json();
       }
     })
-    .then((task) => {
+    .then((solicitud) => {
+      fetch("https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(solicitud),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((task) => {
+        })
+        .catch((error) => {
+        });
       alert("Solicitud eliminada!");
       window.location.reload();
     })
@@ -294,7 +308,7 @@ onMounted(async () => {
       // SOLICITUDES
       solicitudes.value = [];
       const urlSolicitudes =
-        "https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud";
+        "https://655c16b6ab37729791a9cfba.mockapi.io/voluntar/solicitudAceptada";
 
       try {
         const responseSolicitudes = await fetch(urlSolicitudes);
@@ -316,6 +330,7 @@ onMounted(async () => {
     alert("Operación cancelada por el usuario.");
   }
 });
+
 // const cargarSolicitudes = (url) =>{
 //   fetch(urlGet)
 //     .then((response) => {
@@ -332,6 +347,7 @@ onMounted(async () => {
 //       console.error(error);
 //     });
 // }
+
 </script>
 
 <style scoped>

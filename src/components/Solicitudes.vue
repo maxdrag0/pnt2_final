@@ -53,7 +53,9 @@
                 >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Solicitudes</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Solicitudes</a
+                >
               </li>
               <li>
                 <a class="dropdown-item" aria-disabled="true" id="disable"
@@ -142,39 +144,36 @@
           <td>
             <button @click="seleccionarSolicitud(solicitud)">
               <img
-                  id="pregunta"
-                  src="../assets/images/pregunta.png"
-                  alt="ver Solicitud"
-                />
+                id="pregunta"
+                src="../assets/images/pregunta.png"
+                alt="ver Solicitud"
+              />
             </button>
-
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
-import Swal from 'sweetalert2';
-import axios from 'axios';
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const solicitudes = ref([]);
 const solicitudSeleccionada = ref(null);
-const solicitudesAceptadas = ref({})
-
 
 const seleccionarSolicitud = (solicitud) => {
   solicitudSeleccionada.value = solicitud;
 
   // Mostrar detalles en un modal personalizado
   if (solicitudSeleccionada.value) {
-    const { id, asunto, direccion, ciudad, tipoSolicitud, descripcion } = solicitudSeleccionada.value;
+    const { id, asunto, direccion, ciudad, tipoSolicitud, descripcion } =
+      solicitudSeleccionada.value;
 
     Swal.fire({
-      title: 'Detalles de la Solicitud',
+      title: "Detalles de la Solicitud",
       html: `
         <p>ID: ${id}</p>
         <p>Asunto: ${asunto}</p>
@@ -183,11 +182,11 @@ const seleccionarSolicitud = (solicitud) => {
         <p>Tipo de Solicitud: ${tipoSolicitud}</p>
         <p>Descripción: ${descripcion}</p>
       `,
-      confirmButtonText: 'Aceptar',
+      confirmButtonText: "Aceptar",
       showCancelButton: true,
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.value) {
-       await aceptarSolicitud(id)
+        aceptarSolicitud(id);
       }
     });
   }
@@ -197,23 +196,41 @@ const seleccionarSolicitud = (solicitud) => {
 // la solicitud del listado general y moverla a las solicitudes pendientes
 // del usuario una vez que la misma fue aceptada
 
-const aceptarSolicitud = async (solicitudId) => {
-  try {
-    const response = await axios.put(
-      `https://6525d5d667cfb1e59ce7b745.mockapi.io/solicitud/${solicitudId}`,
-      {
-        estado: "aceptada", // Asegúrate de que este campo coincida con tu modelo de datos
-      }
-    );
-
-    if (response.status === 200) {
-      alert("Solicitud aceptada con éxito");
-      // Eliminar la solicitud aceptada de la lista de solicitudes
-      solicitudes.value = solicitudes.value.filter((s) => s.id !== solicitudId);
+const aceptarSolicitud = async (id) => {
+  alert("Dentro del ACEPTAR SOLICITUD");
+  fetch(
+    `https://6552a4cf5c69a779032a3b33.mockapi.io/voluntar/solicitud/${id}`,
+    {
+      method: "DELETE",
     }
-  } catch (error) {
-    console.error("Error al aceptar la solicitud:", error);
-  }
+  )
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((solicitud) => {
+      fetch("https://655c16b6ab37729791a9cfba.mockapi.io/voluntar/solicitudAceptada", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(solicitud),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((task) => {
+          alert("Solicitud aceptada creada!");
+        })
+        .catch((error) => {
+        });
+      alert("Solicitud aceptada!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert("Error en eliminar la solicitud");
+    });
 };
 
 onMounted(() => {

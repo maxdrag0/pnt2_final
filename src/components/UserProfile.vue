@@ -179,7 +179,8 @@ import axios from "axios";
 import { ref, onMounted, onErrorCaptured } from "vue";
 import { useRoute } from 'vue-router';
 import Swal from "sweetalert2";
-// Dentro de tu setup
+
+const userProfile = ref(null);
 const route = useRoute();
 const solicitudes = ref([]);
 const solicitudesAceptadas = ref([]);
@@ -261,21 +262,9 @@ onMounted(() => {
     });
 });
 
-onMounted(fetchUserProfile);
 
-const userProfile = ref(null);
 
-const fetchUserProfile = async () => {
-  const userId = $route.params.userId;
-  try {
-    const response = await axios.get(
-      `https://6525d5d667cfb1e59ce7b745.mockapi.io/${userId}`
-    );
-    userProfile.value = response.data;
-  } catch (error) {
-    console.error("Hubo un error al obtener el perfil del usuario:", error);
-  }
-};
+
 
 onErrorCaptured((error) => {
   console.error("Error capturado:", error);
