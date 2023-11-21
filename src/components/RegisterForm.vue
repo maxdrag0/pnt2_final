@@ -4,36 +4,19 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <router-link to="/">
-            <img
-              id="baston"
-              src="../assets/images/baston.png"
-              alt="Botón de Inicio"
-            />
+            <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
           </router-link>
         </a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 About Us
               </a>
               <ul class="dropdown-menu">
@@ -46,35 +29,21 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Componentes!
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/UserProfile"
-                    >UserProfile</router-link
-                  >
+                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/User"
-                    >User</router-link
-                  >
+                  <router-link class="dropdown-item" to="/User">User</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/Solicitudes"
-                    >Solicitudes</router-link
-                  >
+                  <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
                 </li>
                 <li>
-                  <router-link class="dropdown-item" to="/CrearSolicitud"
-                    >CrearSolicitud</router-link
-                  >
+                  <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
                 </li>
               </ul>
             </li>
@@ -83,28 +52,19 @@
       </div>
     </nav>
   </header>
+
   <body>
     <div class="container-register">
       <form @submit.prevent="validateForm">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input
-            v-model="nombre"
-            type="text"
-            class="form-control"
-            id="nombre"
-          />
+          <input v-model="nombre" type="text" class="form-control" id="nombre" />
           <p v-if="errors.nombre" class="text-danger">{{ errors.nombre }}</p>
         </div>
 
         <div class="mb-3">
           <label for="apellido" class="form-label">Apellido</label>
-          <input
-            v-model="apellido"
-            type="text"
-            class="form-control"
-            id="apellido"
-          />
+          <input v-model="apellido" type="text" class="form-control" id="apellido" />
           <p v-if="errors.apellido" class="text-danger">
             {{ errors.apellido }}
           </p>
@@ -126,27 +86,15 @@
 
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
-          <input
-            v-model="password"
-            type="password"
-            class="form-control"
-            id="password"
-          />
+          <input v-model="password" type="password" class="form-control" id="password" />
           <p v-if="errors.password" class="text-danger">
             {{ errors.password }}
           </p>
         </div>
 
         <div class="mb-3">
-          <label for="confirmPassword" class="form-label"
-            >Confirmar Contraseña</label
-          >
-          <input
-            v-model="confirmPassword"
-            type="password"
-            class="form-control"
-            id="confirmPassword"
-          />
+          <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+          <input v-model="confirmPassword" type="password" class="form-control" id="confirmPassword" />
           <p v-if="errors.confirmPassword" class="text-danger">
             {{ errors.confirmPassword }}
           </p>
@@ -241,8 +189,8 @@ const submitRequest = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding-top: 100px;
+  height: 110vh;
+  padding-top: 150px;
 }
 
 .container-register form {
