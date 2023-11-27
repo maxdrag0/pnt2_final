@@ -101,21 +101,16 @@
             <div class="mb-3">
               <label for="email" class="form-label">Mail</label>
               <input type="email" class="form-control" id="email" required placeholder="juanperez@gmail.com"
-                v-model="mail" />
+                v-model="email" />
             </div>
 
             <router-link to="/RegisterForm">
-            <button
-              type="submit"
-              class="btn btn-primary">
+              <button type="submit" class="btn btn-primary">
                 Registrate!
               </button>
-              </router-link>
-            <button
-              @click="cambiarFormulario()"
-              type="submit"
-              class="btn btn-primary"
-            >
+            </router-link>
+
+            <button @click="cambiarFormulario()" type="submit" class="btn btn-primary">
               Inicia sesion!
             </button>
           </form>
@@ -169,15 +164,8 @@
 
   <footer>
     <h5>Contactanos y decinos como mejorar!</h5>
-    <a
-      href="//wa.me/5491157962522/?text=Hola%20Maxi%20y%20Pedro%20que%20buen%20trabajo%20hicieron!"
-      target="_blank"
-    >
-      <img
-        id="whatsapp"
-        src="../assets/images/wsp.png"
-        alt="Botón de Whatsapp"
-      />
+    <a href="//wa.me/5491157962522/?text=Hola%20Maxi%20y%20Pedro%20que%20buen%20trabajo%20hicieron!" target="_blank">
+      <img id="whatsapp" src="../assets/images/wsp.png" alt="Botón de Whatsapp" />
 
     </a>
   </footer>
