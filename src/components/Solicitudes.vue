@@ -145,9 +145,9 @@ const seleccionarSolicitud = (solicitud) => {
   }
 };
 
-// La siguiente funcón const es para intentar sacar
-// la solicitud del listado general y moverla a las solicitudes pendientes
-// del usuario una vez que la misma fue aceptada
+/* La siguiente funcón const es para intentar sacar 
+   la solicitud del listado general y moverla a las solicitudes pendientes
+   del usuario una vez que la misma fue aceptada */
 
 const aceptarSolicitud = async (id) => {
   alert("Dentro del ACEPTAR SOLICITUD");

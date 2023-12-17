@@ -170,7 +170,7 @@ const submitRequest = async () => {
     console.error("Error al registrar usuario:", error);
   }
 };
-//NUEVO 21.11
+
 onMounted(() => {
   const route = useRoute();
   nombre.value = route.params.nombre || '';
