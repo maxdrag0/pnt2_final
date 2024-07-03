@@ -28,11 +28,7 @@
           <li>
             <a>
               <router-link to="/UserProfile">
-                <img
-                  id="perfil"
-                  src="../assets/images/perfil.png"
-                  alt="Botón de PERFIL"
-                />
+                
               </router-link>
             </a>
           </li>
@@ -44,7 +40,11 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Mi Perfil
+            <img
+                  id="perfil"
+                  src="../assets/images/perfil.png"
+                  alt="Botón de PERFIL"
+                />
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -330,23 +330,6 @@ onMounted(async () => {
     alert("Operación cancelada por el usuario.");
   }
 });
-
-// const cargarSolicitudes = (url) =>{
-//   fetch(urlGet)
-//     .then((response) => {
-//       if (response.status === 200) {
-//         return response.json(); // Convierte la respuesta a JSON
-//       } else {
-//         throw new Error("No se pudo obtener la información");
-//       }
-//     })
-//     .then((data) => {
-//       solicitudes.value = data; //Obtengo el results que es donde esta mi vector que quiero trabajar
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
 
 </script>
 
