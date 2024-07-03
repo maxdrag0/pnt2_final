@@ -84,27 +84,27 @@
         <h2>Inicia sesión o regístrate para comenzar</h2>
 
         <section class="container-comienzo-registro" v-if="formulario">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="emitirDatosUsuario">
             <legend>Registrate</legend>
 
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombre" aria-describedby="Nombre" required placeholder="Juan"
-                v-model="nombre" />
+                v-model="usuario.nombre" />
             </div>
 
             <div class="mb-3">
               <label for="Apellido" class="form-label">Apellido</label>
-              <input type="text " class="form-control" id="Apellido" required placeholder="Perez" v-model="apellido" />
+              <input type="text " class="form-control" id="Apellido" required placeholder="Perez" v-model="usuario.apellido" />
             </div>
 
             <div class="mb-3">
               <label for="email" class="form-label">Mail</label>
               <input type="email" class="form-control" id="email" required placeholder="juanperez@gmail.com"
-                v-model="email" />
+                v-model="usuario.mail" />
             </div>
 
-            <router-link to="/RegisterForm">
+            <router-link :to="{ name: 'RegisterForm', params: { nombre: usuario.nombre, apellido: usuario.apellido, email: usuario.mail } }">
               <button type="submit" class="btn btn-primary">
                 Registrate!
               </button>
@@ -172,13 +172,10 @@
 </template>
 
 <script setup>
-
 import { ref } from "vue";
-//NUEVO
-
 import { useRouter } from 'vue-router';
+
 const router = useRouter();
-//FIN NUEVO
 const formulario = ref(true);
 const usuario = ref({
   nombre: "",
@@ -186,37 +183,12 @@ const usuario = ref({
   mail: "",
 });
 
-
-
 const cambiarFormulario = () => {
   formulario.value = !formulario.value;
 };
 const formularioFalse = () => {
   formulario.value = false;
 };
-
-
-
-
-/*const emitirDatosUsuario = () => {
-  emit('copiarDatos', usuario.value);
-};*/
-
-// NUEVO
-const emitirDatosUsuario = () => {
-  console.log('Datos del usuario:', usuario.value);
-  router.push({
-    name: 'RegisterForm',
-    params: {
-      nombre: usuario.value.nombre,
-      apellido: usuario.value.apellido,
-      email: usuario.value.mail
-    }
-  });
-};
-
-// FIN NUEVO
-
 
 
 </script>
