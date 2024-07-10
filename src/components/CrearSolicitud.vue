@@ -4,12 +4,23 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <router-link to="/">
-          <img id="baston" src="../assets/images/baston.png" alt="Botón de Inicio" />
+          <img
+            id="baston"
+            src="../assets/images/baston.png"
+            alt="Botón de Inicio"
+          />
         </router-link>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -18,48 +29,74 @@
           <li>
             <a>
               <router-link to="/UserProfile">
-                <img id="perfil" src="../assets/images/perfil.png" alt="Botón de PERFIL" />
               </router-link>
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Mi Perfil
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+            <img
+                  id="perfil"
+                  src="../assets/images/perfil.png"
+                  alt="Botón de PERFIL"
+                />
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">Mis Datos</router-link>
+                <router-link class="dropdown-item" to="/User"
+                  >Mis Datos</router-link
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Solicitudes</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Solicitudes</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Certificaciones</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Certificaciones</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Solicitudes Completadas</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Solicitudes Completadas</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" aria-disabled="true" id="disable">Mis Retos</a>
+                <a class="dropdown-item" aria-disabled="true" id="disable"
+                  >Mis Retos</a
+                >
               </li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Componentes!
             </a>
             <ul class="dropdown-menu">
               <li>
-                <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
-              </li>
-              <li>
                 <router-link class="dropdown-item" to="/User">User</router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/Solicitudes">Solicitudes</router-link>
+                <router-link class="dropdown-item" to="/Solicitudes"
+                  >Solicitudes</router-link
+                >
               </li>
               <li>
-                <router-link class="dropdown-item" to="/CrearSolicitud">CrearSolicitud</router-link>
+                <router-link class="dropdown-item" to="/CrearSolicitud"
+                  >CrearSolicitud</router-link
+                >
               </li>
             </ul>
           </li>

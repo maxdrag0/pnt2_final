@@ -47,9 +47,6 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
-                </li>
-                <li>
                   <router-link class="dropdown-item" to="/User">User</router-link>
                 </li>
                 <li>
@@ -148,18 +145,24 @@
       <h1>Sobre nosotros</h1>
       <h2>MAYORES</h2>
     </div>
-    <p>
-      Conectamos a voluntarios con ancianos que necesitan asistencia en sus
-      tareas diarias.
-    </p>
+    <div class="container-au-ancianos">
+      <img src="/src/assets/images/ancianos.jpg" alt="imagen-ancianos" />
+      <p>
+        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+        tareas diarias.
+      </p>
+    </div>
     <div class="titulo" id="voluntarios">
       <h1>Sobre nosotros</h1>
       <h2>VOLUNTARIOS</h2>
     </div>
-    <p>
-      Conectamos a voluntarios con ancianos que necesitan asistencia en sus
-      tareas diarias.
-    </p>
+    <div class="container-au-voluntarios">
+      <p>
+        Conectamos a voluntarios con ancianos que necesitan asistencia en sus
+        tareas diarias.
+      </p>
+      <img src="/src/assets/images/voluntarios.jpg" alt="imagen-voluntarios" />
+    </div>
   </section>
 
   <footer>
@@ -296,4 +299,11 @@ button:first-child {
 button:last-child {
   margin-left: 10px;
 }
+
+.container-au-ancianos, .container-au-voluntarios {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+  gap: 10px; /* Espacio entre la imagen y el párrafo */
+}
+
 </style>

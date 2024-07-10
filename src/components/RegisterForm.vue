@@ -20,9 +20,6 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link class="dropdown-item" to="/UserProfile">UserProfile</router-link>
-                </li>
-                <li>
                   <router-link class="dropdown-item" to="/User">User</router-link>
                 </li>
                 <li>
@@ -150,7 +147,7 @@ const submitRequest = async () => {
 
     if (response.status === 201) {
       alert('Usuario creado exitosamente');
-      router.push({ name: 'User', params: { userId: response.data.id } });
+      router.push('/User')
     }
   } catch (error) {
     console.error('Error al registrar usuario:', error);
